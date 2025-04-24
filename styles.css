@@ -555,7 +555,7 @@ section {
     color: var(--white);
 }
 
-/* 혜택 섹션 */
+/* 혜희 섹션 */
 .benefits {
     background-color: var(--white);
 }
@@ -721,6 +721,7 @@ section {
 .contact-content {
     display: flex;
     gap: 40px;
+    align-items: flex-start;
 }
 
 .contact-info {
@@ -738,16 +739,17 @@ section {
     line-height: 1.8;
 }
 
+/* 연락 방법 카드 수정 */
 .contact-methods {
-    display: flex;
-    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
 }
 
 .contact-method {
-    flex: 1;
     background-color: var(--white);
-    padding: 20px;
     border-radius: 8px;
+    padding: 20px;
     text-align: center;
     box-shadow: var(--shadow);
 }
@@ -768,8 +770,7 @@ section {
 }
 
 .contact-form {
-    max-width: 500px;
-    width: 100%;
+    flex: 1;
     background-color: var(--white);
     padding: 25px;
     border-radius: 8px;
@@ -816,6 +817,30 @@ section {
     font-weight: 500;
     padding: 10px;
     font-size: 15px;
+}
+
+/* 모바일 환경에서의 문의 폼 */
+@media (max-width: 992px) {
+    .contact-content {
+        flex-direction: column;
+    }
+    
+    .contact-info,
+    .contact-form {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-methods {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-method {
+        margin-bottom: 15px;
+    }
 }
 
 /* 푸터 스타일 */
@@ -986,36 +1011,6 @@ header.scrolled .tagline {
     border-top-color: var(--white);
     animation: spin 1s linear infinite;
     margin-right: 8px;
-}
-
-/* 연락 방법 카드 조정 */
-.contact-method {
-    padding: 15px;
-}
-
-.contact-methods {
-    display: flex;
-    gap: 15px;
-}
-
-/* 모바일 환경에서의 문의 폼 */
-@media (max-width: 768px) {
-    .contact-content {
-        flex-direction: column;
-    }
-    
-    .contact-form,
-    .contact-info {
-        max-width: 100%;
-    }
-    
-    .contact-methods {
-        flex-direction: column;
-    }
-    
-    .contact-method {
-        margin-bottom: 15px;
-    }
 }
 
 /* 지도 클릭 효과 */

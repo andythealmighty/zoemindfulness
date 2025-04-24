@@ -1,0 +1,394 @@
+/* 프로그램 상세 페이지 스타일 */
+
+/* 프로그램 히어로 섹션 */
+.program-hero {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.program-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.program-hero .program-icon {
+    font-size: 50px;
+    margin-bottom: 20px;
+}
+
+.program-hero h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.program-subtitle {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* 프로그램 상세 내용 */
+.program-detail {
+    padding: 60px 0;
+    background-color: var(--background-light);
+}
+
+.program-detail-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.program-detail-content > div {
+    padding: 40px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.program-detail-content > div:last-child {
+    border-bottom: none;
+}
+
+.program-detail h2 {
+    color: var(--primary-color);
+    font-size: 28px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.program-detail h2::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+    width: 40px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.program-detail h3 {
+    color: var(--accent-color);
+    font-size: 20px;
+    margin: 25px 0 15px;
+}
+
+/* 추천 리스트 */
+.recommendation-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.recommendation-list li {
+    margin-bottom: 12px;
+    padding-left: 30px;
+    position: relative;
+}
+
+.recommendation-list li i {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    color: var(--accent-color);
+}
+
+/* 상담 절차 */
+.process-steps {
+    margin-top: 30px;
+}
+
+.process-step {
+    display: flex;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 70px;
+    left: 25px;
+    height: calc(100% - 50px);
+    width: 2px;
+    background-color: var(--secondary-color);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    flex-shrink: 0;
+    margin-right: 20px;
+    z-index: 1;
+}
+
+.step-content {
+    flex-grow: 1;
+}
+
+.step-content h3 {
+    margin-top: 0;
+}
+
+.contact-info {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    color: var(--light-text);
+}
+
+/* 상담 세부 정보 */
+.detail-item {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.detail-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.detail-content {
+    flex-grow: 1;
+}
+
+.detail-content h3 {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* 후기 섹션 */
+.testimonials-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.testimonial {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 25px;
+    position: relative;
+}
+
+.testimonial::before {
+    content: """;
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 60px;
+    color: rgba(0, 0, 0, 0.1);
+    line-height: 1;
+}
+
+.testimonial-content {
+    position: relative;
+    z-index: 1;
+}
+
+.testimonial-author {
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-top: 15px;
+    text-align: right;
+}
+
+/* CTA 섹션 */
+.program-cta {
+    background-color: var(--primary-color);
+    color: var(--white);
+    text-align: center;
+}
+
+.program-cta h2 {
+    color: var(--white);
+}
+
+.program-cta h2::after {
+    background-color: var(--white);
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cta-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.primary-btn {
+    background-color: var(--accent-color);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    border: 2px solid var(--white);
+}
+
+/* 다른 프로그램 섹션 */
+.other-programs {
+    background-color: var(--background-light);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.other-programs h2 {
+    margin-bottom: 40px;
+    color: var(--primary-color);
+}
+
+.other-programs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.other-program-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 30px 20px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.other-program-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    color: var(--primary-color);
+}
+
+.other-program-icon {
+    font-size: 36px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.other-program-card h3 {
+    font-size: 18px;
+    text-align: center;
+}
+
+/* 모바일 반응형 스타일 */
+@media (max-width: 768px) {
+    .program-hero {
+        padding: 50px 0;
+    }
+    
+    .program-hero h1 {
+        font-size: 28px;
+    }
+    
+    .program-detail-content > div {
+        padding: 30px 20px;
+    }
+    
+    .process-step {
+        flex-direction: column;
+    }
+    
+    .step-number {
+        margin-bottom: 15px;
+    }
+    
+    .process-step:not(:last-child)::after {
+        left: 25px;
+        top: 50px;
+        height: calc(100% - 30px);
+    }
+    
+    .detail-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .detail-icon {
+        margin-bottom: 15px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+    }
+    
+    .cta-buttons .btn {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+/* 프로그램별 특화 스타일 */
+
+/* TCI 검사 페이지 */
+.tci-page .program-hero {
+    background-color: #5d8aa8; /* 더 차분한 파란색 */
+}
+
+/* 마음코칭 페이지 */
+.coaching-page .program-hero {
+    background-color: #d88c51; /* 따뜻한 주황색 */
+}
+
+/* 학습 및 진로 검사 페이지 */
+.career-page .program-hero {
+    background-color: #7a9e7e; /* 밝은 녹색 */
+}
+
+/* 커플/부부/가족상담 페이지 */
+.couple-page .program-hero {
+    background-color: #ba7ba1; /* 부드러운 보라색 */
+}
+
+/* 검사 종류 그리드 */
+.tests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.test-item {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.test-item h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+/* 프로그램별 아이콘 강조 */
+.program-icon i {
+    transition: all 0.5s ease;
+}
+
+.program-hero:hover .program-icon i {
+    transform: scale(1.2);
+}

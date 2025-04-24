@@ -1,0 +1,1054 @@
+:root {
+    --primary-color: #6a8d73; /* 따뜻한 녹색 */
+    --secondary-color: #f0e6d7; /* 부드러운 베이지색 */
+    --accent-color: #d88c51; /* 따뜻한 주황색 */
+    --text-color: #333333;
+    --light-text: #777777;
+    --background-light: #f9f7f4;
+    --white: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--background-light);
+    opacity: 1;
+    transition: none;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1, h2, h3, h4 {
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%, -50%);
+    transform-origin: 50% 50%;
+}
+
+.btn:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0, 0);
+        opacity: 0.5;
+    }
+    20% {
+        transform: scale(25, 25);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(40, 40);
+        opacity: 0;
+    }
+}
+
+.card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 1024px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .program-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px 0;
+    }
+    
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    nav {
+        display: none;
+    }
+    
+    nav.active {
+        display: block;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: var(--white);
+        box-shadow: var(--shadow);
+        z-index: 100;
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    nav ul li {
+        margin: 0;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 10px 20px;
+        border-bottom: 1px solid var(--secondary-color);
+    }
+    
+    .mobile-menu-btn {
+        display: block;
+    }
+    
+    .hero-content {
+        padding: 40px 0;
+    }
+    
+    .about-content,
+    .doctor-content,
+    .location-content,
+    .contact-content {
+        flex-direction: column;
+    }
+    
+    .about-image,
+    .doctor-image,
+    .about-text,
+    .doctor-info,
+    .map,
+    .address-info,
+    .contact-info,
+    .contact-form {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    
+    .program-grid,
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-methods {
+        flex-direction: column;
+    }
+    
+    .contact-method {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .footer-logo,
+    .footer-info,
+    .footer-links {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    .section-title {
+        margin-bottom: 20px;
+    }
+    
+    .hero-content h2 {
+        font-size: 22px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .doctor-career ul {
+        padding-left: 15px;
+    }
+    
+    .hours-table {
+        font-size: 14px;
+    }
+    
+    .hour-row {
+        padding: 8px 10px;
+    }
+    
+    .program-card,
+    .benefit-card {
+        padding: 20px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-group label {
+        margin-bottom: 5px;
+    }
+    
+    .submit-btn {
+        width: 100%;
+    }
+}
+
+/* 헤더 스타일 추가 */
+header {
+    background-color: var(--white);
+    padding: 20px 0;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo h1 {
+    color: var(--primary-color);
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.tagline {
+    color: var(--light-text);
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    font-weight: 500;
+}
+
+.mobile-menu-btn {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+/* 히어로 섹션 스타일 추가 */
+.hero {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: var(--white);
+    padding: 100px 0;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.hero-content h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.primary-btn {
+    background-color: var(--accent-color);
+    font-weight: 500;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    border: 2px solid var(--white);
+}
+
+/* 섹션 공통 스타일 */
+section {
+    padding: 80px 0;
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    animation: none !important;
+    transition: none !important;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    position: relative;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+/* 소개 섹션 */
+.about-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-image {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.specialty-areas {
+    margin-top: 20px;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.specialty-areas h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.specialty-areas ul {
+    padding-left: 20px;
+}
+
+.specialty-areas li {
+    margin-bottom: 8px;
+}
+
+/* 전문가 소개 섹션 */
+.doctor {
+    background-color: var(--white);
+}
+
+.doctor-content {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.doctor-image {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.doctor-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.doctor-info {
+    flex: 1;
+}
+
+.doctor-intro {
+    font-size: 18px;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.doctor-career {
+    margin-top: 30px;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.doctor-career h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.doctor-career ul {
+    padding-left: 20px;
+}
+
+.doctor-career li {
+    margin-bottom: 8px;
+}
+
+/* 프로그램 섹션 */
+.programs {
+    background-color: var(--background-light);
+}
+
+.program-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.program-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.program-card:hover {
+    transform: translateY(-10px);
+}
+
+.program-icon {
+    font-size: 36px;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.program-card h3 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.program-card p {
+    margin-bottom: 20px;
+    min-height: 80px;
+}
+
+.program-btn {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.program-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* 혜택 섹션 */
+.benefits {
+    background-color: var(--white);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.benefit-card {
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.benefit-icon {
+    font-size: 36px;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.benefit-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+/* 영업시간 섹션 */
+.hours {
+    background-color: var(--background-light);
+}
+
+.hours-table {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.hour-row {
+    display: flex;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.hour-row:last-child {
+    border-bottom: none;
+}
+
+.day {
+    flex: 1;
+    font-weight: 500;
+}
+
+.time {
+    flex: 1;
+    text-align: right;
+}
+
+.hours-note {
+    text-align: center;
+    margin-top: 20px;
+    color: var(--light-text);
+}
+
+/* 오시는 길 섹션 */
+.location {
+    background-color: var(--white);
+}
+
+.location-content {
+    display: flex;
+    gap: 40px;
+}
+
+.map {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.map-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(106, 141, 115, 0.8);
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.map-overlay i {
+    margin-right: 8px;
+}
+
+.map:hover .map-overlay {
+    background-color: rgba(216, 140, 81, 0.9);
+}
+
+.address-info {
+    flex: 1;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+}
+
+.address-info h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.address-info p {
+    margin-bottom: 15px;
+}
+
+.address-info i {
+    color: var(--accent-color);
+    margin-right: 10px;
+    width: 20px;
+    text-align: center;
+}
+
+.social-links {
+    margin-top: 30px;
+}
+
+.social-links a {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: var(--white);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.social-links i {
+    margin-right: 10px;
+}
+
+/* 상담 문의 섹션 */
+.contact {
+    background-color: var(--background-light);
+}
+
+.contact-content {
+    display: flex;
+    gap: 40px;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-quote {
+    font-size: 18px;
+    font-style: italic;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+.contact-methods {
+    display: flex;
+    gap: 20px;
+}
+
+.contact-method {
+    flex: 1;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.contact-method i {
+    font-size: 30px;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.contact-method h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.talk-btn {
+    margin-top: 10px;
+}
+
+.contact-form {
+    max-width: 500px;
+    width: 100%;
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.contact-form h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 14px;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+    max-height: 200px;
+}
+
+.submit-btn {
+    width: 100%;
+    background-color: var(--accent-color);
+    font-weight: 500;
+    padding: 10px;
+    font-size: 15px;
+}
+
+/* 푸터 스타일 */
+footer {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 50px 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-logo {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-logo h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.footer-info {
+    flex: 2;
+    min-width: 200px;
+}
+
+.footer-links {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-links h4 {
+    margin-bottom: 15px;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--white);
+    opacity: 0.8;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+.footer-keywords {
+    width: 100%;
+    margin-top: 30px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+/* 맨 위로 이동 버튼 스타일 */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 99;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background-color: var(--accent-color);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* 스크롤 시 헤더 스타일 변경 */
+header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 0;
+}
+
+header.scrolled .logo h1 {
+    font-size: 24px;
+}
+
+header.scrolled .tagline {
+    font-size: 12px;
+}
+
+/* 프로그램 카드 호버 효과 추가 */
+.program-card.hovered {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.program-card.hovered h3 {
+    color: var(--white);
+}
+
+.program-card.hovered .program-icon {
+    color: var(--white);
+}
+
+.program-card.hovered .program-btn {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border-color: var(--white);
+}
+
+/* 지도 로딩 스타일 */
+.map-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    background-color: #f5f5f5;
+    color: var(--light-text);
+    font-size: 16px;
+}
+
+/* 폼 성공 메시지 스타일 */
+.success-message {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    animation: fadeIn 0.5s ease;
+}
+
+/* 로딩 인디케이터 스타일 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--white);
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+}
+
+/* 연락 방법 카드 조정 */
+.contact-method {
+    padding: 15px;
+}
+
+.contact-methods {
+    display: flex;
+    gap: 15px;
+}
+
+/* 모바일 환경에서의 문의 폼 */
+@media (max-width: 768px) {
+    .contact-content {
+        flex-direction: column;
+    }
+    
+    .contact-form,
+    .contact-info {
+        max-width: 100%;
+    }
+    
+    .contact-methods {
+        flex-direction: column;
+    }
+    
+    .contact-method {
+        margin-bottom: 15px;
+    }
+}
+
+/* 지도 클릭 효과 */
+.map.clicked {
+    transform: scale(0.98);
+}
+
+.map a {
+    display: block;
+    position: relative;
+    color: var(--white);
+    text-decoration: none;
+}
+
+/* 지도 로딩 상태 대신 기본 스타일 적용 */
+#map {
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #777;
+    text-align: center;
+    padding: 20px;
+}
+
+/* 네비게이션 액티브 상태 */
+nav ul li a.active {
+    color: var(--accent-color);
+    font-weight: 700;
+}
+
+/* 스크롤 애니메이션 */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px; /* 헤더 높이만큼 패딩 추가 */
+}

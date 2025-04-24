@@ -1,0 +1,554 @@
+<!-- 상담 후기 (testimonials.html) -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="조에심리상담센터의 실제 내담자들의 상담 후기입니다. 다양한 프로그램의 상담 경험과 변화 과정을 확인하세요.">
+    <meta name="keywords" content="수원심리상담, 광교심리상담, 상담후기, 심리상담후기, 내담자후기">
+    <title>상담 후기 | 조에심리상담센터</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <style>
+        /* 임시 스타일 추가 - 페이지 깜빡임 방지 */
+        html, body, main, section, div {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transition: none !important;
+            animation: none !important;
+        }
+        
+        /* 후기 게시판 스타일 */
+        .testimonials-board {
+            margin-top: 2rem;
+            border-top: 2px solid #333;
+        }
+        
+        .testimonial-item {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .testimonial-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+        
+        .testimonial-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .testimonial-title i {
+            color: #4A8B9F;
+        }
+        
+        .testimonial-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .testimonial-program {
+            background-color: #eef7fa;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #4A8B9F;
+        }
+        
+        .testimonial-date {
+            color: #888;
+        }
+        
+        .testimonial-content {
+            padding: 1rem 2rem;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin: 0 1rem;
+            position: relative;
+            display: none;
+        }
+        
+        .testimonial-content.active {
+            display: block;
+        }
+        
+        .testimonial-content::before {
+            content: """;
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            font-size: 2rem;
+            color: #ccc;
+            font-family: serif;
+        }
+        
+        .testimonial-content::after {
+            content: """;
+            position: absolute;
+            bottom: 0;
+            right: 0.5rem;
+            font-size: 2rem;
+            color: #ccc;
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            text-align: right;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .testimonial-pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+            gap: 0.5rem;
+        }
+        
+        .page-link {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border: 1px solid #ddd;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        .page-link:hover, .page-link.active {
+            background-color: #4A8B9F;
+            color: white;
+            border-color: #4A8B9F;
+        }
+        
+        .testimonial-hero {
+            background-color: #f5f9fa;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .testimonial-hero h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-hero p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .external-links-section {
+            margin: 3rem 0;
+            text-align: center;
+            padding: 2rem;
+            background-color: #f5f9fa;
+            border-radius: 10px;
+        }
+        
+        .external-links-section h2 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        
+        .external-links-section p {
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .external-links-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .external-link-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background-color: #fff;
+            color: #333;
+            border: 2px solid #4A8B9F;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .external-link-btn:hover {
+            background-color: #4A8B9F;
+            color: #fff;
+            transform: translateY(-3px);
+        }
+        
+        .external-link-btn i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .blog-link {
+            margin-top: 15px;
+            text-align: right;
+        }
+        
+        .read-more-link {
+            display: inline-flex;
+            align-items: center;
+            color: #4A8B9F;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 8px 15px;
+            border: 1px solid #4A8B9F;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .read-more-link:hover {
+            background-color: #4A8B9F;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .read-more-link i {
+            margin-right: 6px;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="back-to-top" aria-label="맨 위로 이동">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>조에심리상담센터</h1>
+                        <p class="tagline">행복한 일상으로의 여정</p>
+                    </a>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="index.html#about">소개</a></li>
+                        <li><a href="index.html#programs">프로그램</a></li>
+                        <li><a href="index.html#doctor">전문가 소개</a></li>
+                        <li><a href="index.html#hours">영업시간</a></li>
+                        <li><a href="index.html#location">오시는 길</a></li>
+                        <li><a href="testimonials.html" class="active">상담후기</a></li>
+                        <li><a href="index.html#contact" class="btn">상담 문의</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="testimonial-hero">
+            <div class="container">
+                <h1>내담자 상담 후기</h1>
+                <p>조에심리상담센터를 방문하신 내담자들의 소중한 경험과 변화 과정을 공유합니다. 다양한 프로그램을 통해 변화된 일상과 마음의 회복 이야기를 확인하세요.</p>
+            </div>
+        </section>
+        
+        <section class="testimonials">
+            <div class="container">
+                <div class="testimonials-board">
+                    <!-- 후기 아이템 1 -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-header">
+                            <div class="testimonial-title" onclick="toggleTestimonial(1)">
+                                <i class="fas fa-quote-left"></i>
+                                <span>TCI 검사를 통해 자녀의 성향을 이해하게 되었어요</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <div class="testimonial-program">TCI 기질 성격검사</div>
+                                <div class="testimonial-date">2023.10.15</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-content" id="testimonial-1">
+                            <div class="testimonial-text">
+                                <p>아이의 행동이 늘 이해가 안 됐는데, JTCI 검사를 통해 자녀의 타고난 특성을 알게 되었어요. 부모인 저도 검사를 받아보니 제가 기대하는 방식과 아이의 타고난 성향이 달라서 갈등이 생겼다는 걸 알게 되었습니다. 자녀를 이해하는 방식이 완전히 달라졌고, 아이와의 관계도 많이 개선되었습니다.</p>
+                                <p>특히 검사 결과를 바탕으로 선생님이 제안해주신 양육 방법을 시도해보니 아이가 훨씬 편안해하고 학습에도 더 집중하는 모습을 보여 놀랐어요. 부모와 자녀 모두 TCI 검사를 받아보시길 정말 추천합니다.</p>
+                            </div>
+                            <div class="testimonial-author">초등학생 학부모 김○○</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 후기 아이템 2 -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-header">
+                            <div class="testimonial-title" onclick="toggleTestimonial(2)">
+                                <i class="fas fa-quote-left"></i>
+                                <span>부부상담을 통해 서로를 이해하게 되었습니다</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <div class="testimonial-program">커플/부부/가족상담</div>
+                                <div class="testimonial-date">2023.09.22</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-content" id="testimonial-2">
+                            <div class="testimonial-text">
+                                <p>결혼 10년 차에 의사소통 문제로 심각한 갈등을 겪고 있었습니다. 매일 같은 대화에서 갈등이 반복되고, 서로를 이해하지 못해 힘든 시간을 보내고 있었어요. 부부상담을 통해 서로의 대화 방식을 이해하고 조율하는 법을 배웠고, 지금은 훨씬 건강한 관계를 유지하고 있습니다.</p>
+                                <p>상담사님이 중립적인 입장에서 양쪽의 이야기를 들어주시고, 구체적인 의사소통 방법을 알려주신 덕분에 갈등 상황에서도 서로를 비난하지 않고 문제를 해결할 수 있게 되었습니다. 위기의 순간에 조에심리상담센터를 찾은 것이 정말 다행이라고 생각합니다.</p>
+                            </div>
+                            <div class="testimonial-author">40대 부부 이○○, 박○○</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 후기 아이템 3 -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-header">
+                            <div class="testimonial-title" onclick="toggleTestimonial(3)">
+                                <i class="fas fa-quote-left"></i>
+                                <span>해외에서도 한국어로 상담받을 수 있어 큰 도움이 되었습니다</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <div class="testimonial-program">1:1 화상 개인상담</div>
+                                <div class="testimonial-date">2023.08.17</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-content" id="testimonial-3">
+                            <div class="testimonial-text">
+                                <p>해외 거주로 한국어로 상담받기 어려웠는데, 화상 상담을 통해 시간과 공간의 제약 없이 편안하게 상담을 받을 수 있었습니다. 같은 시간대에 있는 것처럼 소통할 수 있어 만족스러웠습니다. 해외 생활에서 오는 스트레스와 문화적 차이로 인한 어려움을 누군가와 한국어로 나눌 수 있다는 것만으로도 큰 힘이 되었습니다.</p>
+                                <p>ZOOM을 통한 화상 상담도 생각보다 훨씬 자연스럽고, 대면 상담과 다를 바 없이 깊은 이야기를 나눌 수 있었어요. 시차가 있는데도 저에게 맞춰서 일정을 조율해주신 부분도 정말 감사했습니다.</p>
+                            </div>
+                            <div class="testimonial-author">해외 거주 30대 정○○</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 후기 아이템 4 -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-header">
+                            <div class="testimonial-title" onclick="toggleTestimonial(4)">
+                                <i class="fas fa-quote-left"></i>
+                                <span>마음코칭 프로그램으로 내 문제의 원인을 알게 되었어요</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <div class="testimonial-program">마음코칭(심리검사+코칭)</div>
+                                <div class="testimonial-date">2023.07.05</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-content" id="testimonial-4">
+                            <div class="testimonial-text">
+                                <p>장기 상담은 부담스러웠는데, 마음코칭 프로그램이 정말 적절했어요. 두 가지 심리검사와 코칭을 통해 제 성격과 행동 패턴을 이해하게 되었고, 고민했던 문제에 대한 실질적인 해결책을 얻을 수 있었습니다. 특히 MMPI와 TCI 검사를 함께 받아서 제 심리 상태와 타고난 성향을 종합적으로 이해할 수 있었던 점이 좋았습니다.</p>
+                                <p>선생님의 코칭 세션에서는 제가 무의식적으로 반복하던 패턴을 발견하고, 이를 개선할 수 있는 구체적인 방법을 알려주셨어요. 짧은 시간이었지만 정말 많은 인사이트를 얻었습니다.</p>
+                            </div>
+                            <div class="testimonial-author">30대 직장인 최○○</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 후기 아이템 5 -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-header">
+                            <div class="testimonial-title" onclick="toggleTestimonial(5)">
+                                <i class="fas fa-quote-left"></i>
+                                <span>진로검사로 내 적성에 맞는 방향을 찾았습니다</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <div class="testimonial-program">학습 및 진로 검사</div>
+                                <div class="testimonial-date">2023.06.10</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-content" id="testimonial-5">
+                            <div class="testimonial-text">
+                                <p>진로에 대한 고민이 많았는데, 검사를 통해 제 적성과 흥미를 객관적으로 확인할 수 있었습니다. 선생님의 상세한 설명 덕분에 앞으로의 방향이 더 명확해졌어요. HOLLAND 진로탐색검사와 U&I 학습유형검사를 함께 받아보니 제가 어떤 환경에서 더 잘 할 수 있는지, 어떤 직업군이 저에게 맞는지 알 수 있었습니다.</p>
+                                <p>무엇보다 결과를 단순히 알려주는 것이 아니라, 실제 진로 계획을 세우는 데 도움이 되는 구체적인 조언을 받을 수 있어서 좋았어요. 고등학생이라 진로 결정이 막막했는데 이제는 자신감을 갖고 준비할 수 있게 되었습니다.</p>
+                            </div>
+                            <div class="testimonial-author">고등학교 2학년 학생 홍○○</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 후기 아이템 6 -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-header">
+                            <div class="testimonial-title" onclick="toggleTestimonial(6)">
+                                <i class="fas fa-quote-left"></i>
+                                <span>상담을 통해 우울증에서 벗어날 수 있었습니다</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <div class="testimonial-program">1:1 개인상담</div>
+                                <div class="testimonial-date">2023.05.20</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-content" id="testimonial-6">
+                            <div class="testimonial-text">
+                                <p>불안과 우울로 일상생활이 힘들었는데, 상담을 통해 제 모습을 이해하게 되었고 조금씩 변화하는 제 자신을 발견했습니다. 선생님의 따뜻한 공감과 전문적인 조언이 큰 도움이 되었습니다. 처음에는 모든 것이 무의미하게 느껴지고 매일이 고통스러웠지만, 상담을 통해 제 감정을 인식하고 조절하는 방법을 배웠습니다.</p>
+                                <p>특히 인지행동치료 기법을 활용한 방법들이 실생활에서 많은 도움이 되었어요. 이제는 부정적인 생각이 들 때마다 그것을 인식하고 대체할 수 있는 긍정적인 사고방식을 갖게 되었습니다. 심리상담의 힘을 정말 실감하고 있습니다.</p>
+                            </div>
+                            <div class="testimonial-author">30대 직장인 손○○</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 후기 아이템 7 - 블로그 연결 후기 -->
+                    <div class="testimonial-item">
+                        <div class="testimonial-header">
+                            <div class="testimonial-title" onclick="toggleTestimonial(7)">
+                                <i class="fas fa-quote-left"></i>
+                                <span>상담을 통해 우울증에서 벗어날 수 있었습니다</span>
+                            </div>
+                            <div class="testimonial-meta">
+                                <div class="testimonial-program">1:1 개인상담</div>
+                                <div class="testimonial-date">2023.03.24</div>
+                            </div>
+                        </div>
+                        <div class="testimonial-content" id="testimonial-7">
+                            <div class="testimonial-text">
+                                <p>불안과 우울로 일상생활이 힘들었는데, 상담을 통해 제 모습을 이해하게 되었고 조금씩 변화하는 제 자신을 발견했습니다. 선생님의 따뜻한 공감과 전문적인 조언이 큰 도움이 되었습니다.</p>
+                                <p>처음에는 모든 것이 무의미하게 느껴지고 매일이 고통스러웠지만, 상담을 통해 제 감정을 인식하고 조절하는 방법을 배웠습니다. 특히 인지행동치료 기법을 활용한 방법들이 실생활에서 많은 도움이 되었어요. 이제는 부정적인 생각이 들 때마다 그것을 인식하고 대체할 수 있는 긍정적인 사고방식을 갖게 되었습니다.</p>
+                                <div class="blog-link">
+                                    <a href="https://blog.naver.com/zoemindfulness/222681313175" target="_blank" class="read-more-link">
+                                        <i class="fas fa-external-link-alt"></i> 전체 후기 블로그에서 보기
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="testimonial-author">30대 직장인 손○○</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-pagination">
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </section>
+        
+        <section class="external-links-section">
+            <div class="container">
+                <h2>내담자 상담 후기 더 보기</h2>
+                <p>조에심리상담센터의 다양한 상담 후기와 정보를 외부 채널에서도 확인해보세요. 내담자분들의 생생한 경험과 심리상담에 관한 유용한 정보를 제공해드립니다.</p>
+                <div class="external-links-container">
+                    <a href="https://blog.naver.com/zoemindfulness/222681313175" class="external-link-btn" target="_blank">
+                        <i class="fas fa-external-link-alt"></i>
+                        비대면(화상)상담 이용 후기 (22.3.24)
+                    </a>
+                    <a href="https://blog.naver.com/zoemindfulness" class="external-link-btn" target="_blank">
+                        <i class="fas fa-blog"></i>
+                        네이버 블로그 더 보기
+                    </a>
+                    <a href="#" class="external-link-btn add-review-btn" id="add-review-btn">
+                        <i class="fas fa-plus-circle"></i>
+                        후기 작성하기
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>조에심리상담센터</h3>
+                    <p>행복한 일상으로의 여정</p>
+                </div>
+                <div class="footer-info">
+                    <p>경기 수원시 영통구 광교중앙로248번길 7-2 원희캐슬 D동 607호</p>
+                    <p>전화: 010-7551-5625 | 이메일: zoemindfulness@naver.com</p>
+                    <p>&copy; 2023 조에심리상담센터. All Rights Reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>바로가기</h4>
+                    <ul>
+                        <li><a href="https://blog.naver.com/zoemindfulness" target="_blank">네이버 블로그</a></li>
+                        <li><a href="https://smartstore.naver.com/mindpt" target="_blank">스마트스토어</a></li>
+                        <li><a href="https://talk.naver.com/ct/w4r6du?frm=pmd" target="_blank">톡톡 문의</a></li>
+                        <li><a href="http://pf.kakao.com/_uxdlYK" target="_blank">카카오 채널</a></li>
+                    </ul>
+                </div>
+                <div class="footer-keywords">
+                    <p>수원심리상담 | 광교심리상담 | 광교부부상담 | 수원부부상담 | 청소년상담</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // 후기 토글 기능
+        function toggleTestimonial(id) {
+            const content = document.getElementById('testimonial-' + id);
+            if (content.classList.contains('active')) {
+                content.classList.remove('active');
+            } else {
+                // 모든 후기 닫기
+                const allContents = document.querySelectorAll('.testimonial-content');
+                allContents.forEach(item => {
+                    item.classList.remove('active');
+                });
+                // 선택한 후기만 열기
+                content.classList.add('active');
+            }
+        }
+        
+        // 페이지 로드 시 실행
+        document.addEventListener('DOMContentLoaded', function() {
+            // 모바일 메뉴 토글
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+            
+            // 맨 위로 스크롤 버튼
+            const backToTopBtn = document.querySelector('.back-to-top');
+            
+            if (backToTopBtn) {
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        backToTopBtn.style.display = 'block';
+                    } else {
+                        backToTopBtn.style.display = 'none';
+                    }
+                });
+                
+                backToTopBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

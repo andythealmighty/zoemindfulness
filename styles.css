@@ -516,38 +516,96 @@ section {
 }
 
 .program-card {
-    background-color: var(--white);
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     padding: 30px;
+    background-color: var(--white);
+    border-radius: 10px;
     box-shadow: var(--shadow);
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
     text-align: center;
 }
 
 .program-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.program-card:hover .program-icon {
+    transform: scale(1.1);
 }
 
 .program-icon {
-    font-size: 36px;
-    color: var(--primary-color);
+    font-size: 40px;
+    color: var(--accent-color);
     margin-bottom: 20px;
+    transition: all 0.3s ease;
 }
 
 .program-card h3 {
-    margin-bottom: 15px;
     color: var(--primary-color);
+    font-size: 20px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 10px;
 }
 
-.program-card p {
+.program-card h3::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background-color: var(--accent-color);
+}
+
+.program-desc {
     margin-bottom: 20px;
-    min-height: 80px;
+    flex-grow: 1;
+}
+
+.program-desc p {
+    color: var(--light-text);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.program-features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.program-features li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+}
+
+.program-features li i {
+    color: var(--primary-color);
+    margin-right: 10px;
+    font-size: 16px;
+    flex-shrink: 0;
 }
 
 .program-btn {
+    margin-top: auto;
+    align-self: center;
     background-color: transparent;
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
+    transition: all 0.3s ease;
+    font-weight: 500;
+    padding: 10px 20px;
 }
 
 .program-btn:hover {
@@ -1046,4 +1104,1564 @@ nav ul li a.active {
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px; /* 헤더 높이만큼 패딩 추가 */
+}
+
+/* 메인 페이지 특징 섹션 스타일 */
+.main-features {
+    padding: 80px 0;
+    background-color: var(--background-light);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.feature-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-icon {
+    font-size: 36px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.feature-btn {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+.feature-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+@media (max-width: 992px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 576px) {
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 내부 페이지 공통 스타일 */
+.page-header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.page-header p {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+/* 상담 영역 카드 스타일 */
+.specialty-areas-section {
+    margin-top: 60px;
+}
+
+.specialty-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.specialty-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.specialty-card:hover {
+    transform: translateY(-10px);
+}
+
+.specialty-icon {
+    font-size: 36px;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.specialty-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.specialty-card p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* 철학 섹션 스타일 */
+.about-philosophy {
+    margin-top: 80px;
+}
+
+.philosophy-content {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.philosophy-image {
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.philosophy-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.philosophy-text {
+    flex: 1;
+}
+
+.philosophy-text p {
+    margin-bottom: 20px;
+}
+
+/* CTA 섹션 스타일 */
+.cta-section {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.cta-section h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.cta-section p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.primary-btn {
+    background-color: var(--accent-color);
+    font-weight: 500;
+}
+
+.secondary-btn {
+    background-color: transparent;
+    border: 2px solid var(--white);
+}
+
+@media (max-width: 992px) {
+    .specialty-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .philosophy-content {
+        flex-direction: column;
+    }
+    
+    .philosophy-image,
+    .philosophy-text {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .specialty-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .cta-buttons .btn {
+        width: 100%;
+        max-width: 250px;
+        margin-bottom: 10px;
+    }
+}
+
+/* 추가 스타일 - 연락 방법 */
+.method-icon {
+    font-size: 36px;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.method-time {
+    font-size: 12px;
+    color: var(--light-text);
+    margin-top: 5px;
+}
+
+.method-btn {
+    margin-top: 10px;
+    padding: 8px 15px;
+    font-size: 14px;
+}
+
+/* FAQ 스타일 */
+.contact-faq {
+    margin-top: 60px;
+}
+
+.faq-list {
+    margin-top: 30px;
+}
+
+.faq-item {
+    background-color: var(--white);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: 15px 20px;
+    cursor: pointer;
+    position: relative;
+    font-weight: 500;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+.faq-question i {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+.faq-answer {
+    padding: 0 20px 15px;
+    border-top: 1px solid #f0f0f0;
+}
+
+/* 교통편 및 방문 안내 스타일 */
+.directions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.direction-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+}
+
+.direction-icon {
+    font-size: 36px;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.direction-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.direction-card ul {
+    padding-left: 20px;
+}
+
+.direction-card li {
+    margin-bottom: 10px;
+}
+
+.location-tips {
+    margin-top: 40px;
+    background-color: var(--secondary-color);
+    padding: 25px;
+    border-radius: 8px;
+}
+
+.location-tips h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.location-tips ul {
+    padding-left: 20px;
+}
+
+.location-tips li {
+    margin-bottom: 10px;
+}
+
+.location-tips i {
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+.location-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* 사회관계망 링크 스타일 */
+.social-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.social-btn {
+    background-color: var(--white);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.social-btn i {
+    margin-right: 8px;
+}
+
+/* 상담 예약 절차 스타일 */
+.process-steps {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+.process-step {
+    display: flex;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.process-step:last-child {
+    margin-bottom: 0;
+}
+
+.process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 50px;
+    left: 20px;
+    height: calc(100% - 30px);
+    width: 2px;
+    background-color: var(--secondary-color);
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-right: 15px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.step-content {
+    flex-grow: 1;
+}
+
+.step-content h3 {
+    margin-bottom: 10px;
+    color: var(--primary-color);
+}
+
+.reservation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+    .directions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .reservation-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .reservation-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 10px;
+    }
+}
+
+/* 폼 개인정보 동의 스타일 */
+.form-privacy {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.form-privacy input {
+    margin-right: 10px;
+}
+
+.form-privacy label {
+    font-size: 14px;
+}
+
+/* 상담 영역 섹션 스타일 개선 */
+.specialty-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+    text-align: center;
+}
+
+.specialty-list li {
+    padding: 8px 0;
+    border-bottom: 1px dashed #e0e0e0;
+    font-size: 15px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.specialty-list li:last-child {
+    border-bottom: none;
+}
+
+.specialty-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 소개 텍스트 중앙 정렬 */
+.section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    line-height: 1.8;
+    font-size: 17px;
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+}
+
+/* 프로그램 페이지 개선 스타일 */
+.programs-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    background-color: var(--secondary-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.process-section {
+    margin-top: 80px;
+}
+
+.process-container {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: var(--shadow);
+    margin-top: 30px;
+}
+
+.process-step {
+    display: flex;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.process-step:last-child {
+    margin-bottom: 0;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 25px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+}
+
+.process-step:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 50px;
+    left: 25px;
+    width: 2px;
+    height: calc(100% - 10px);
+    background-color: var(--secondary-color);
+    z-index: 1;
+}
+
+.step-content {
+    flex-grow: 1;
+}
+
+.step-content h3 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.step-content p {
+    color: var(--light-text);
+    line-height: 1.6;
+}
+
+@media (max-width: 992px) {
+    .program-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .process-container {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .program-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .process-step {
+        flex-direction: column;
+    }
+    
+    .step-number {
+        margin-bottom: 15px;
+        margin-right: 0;
+    }
+    
+    .process-step:not(:last-child)::after {
+        display: none;
+    }
+}
+
+/* 전문가 소개 페이지 개선 스타일 */
+.team-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 40px;
+    background-color: var(--secondary-color);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.team-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    gap: 15px;
+}
+
+.team-tab {
+    padding: 12px 30px;
+    background-color: var(--white);
+    border: 2px solid var(--primary-color);
+    border-radius: 30px;
+    color: var(--primary-color);
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.team-tab.active, .team-tab:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+.team-content {
+    display: none;
+}
+
+.team-content.active {
+    display: block;
+}
+
+.doctor-profile {
+    margin-bottom: 50px;
+}
+
+.card-shadow {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.doctor-profile-section .doctor-content {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.doctor-profile-section .doctor-image {
+    flex: 0 0 300px;
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+}
+
+.doctor-profile-section .doctor-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.doctor-profile-section .doctor-info {
+    flex: 1;
+    padding: 30px;
+}
+
+.doctor-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.doctor-header h2 {
+    font-size: 26px;
+    color: var(--primary-color);
+    margin-right: 15px;
+    margin-bottom: 0;
+}
+
+.doctor-position {
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.doctor-intro {
+    color: var(--light-text);
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.doctor-message {
+    background-color: var(--secondary-color);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    position: relative;
+    font-style: italic;
+}
+
+.doctor-message p {
+    margin-bottom: 10px;
+    line-height: 1.8;
+}
+
+.doctor-message p:last-child {
+    margin-bottom: 0;
+}
+
+.doctor-message i.fa-quote-left {
+    color: var(--accent-color);
+    margin-right: 5px;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.doctor-message i.fa-quote-right {
+    color: var(--accent-color);
+    margin-left: 5px;
+    font-size: 16px;
+    opacity: 0.7;
+}
+
+.doctor-career, .doctor-certificates, .doctor-publications, .doctor-specialties {
+    margin-top: 25px;
+}
+
+.doctor-career h3, .doctor-certificates h3, .doctor-publications h3, .doctor-specialties h3 {
+    font-size: 18px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.doctor-career h3 i, .doctor-certificates h3 i, .doctor-publications h3 i, .doctor-specialties h3 i {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+.doctor-career ul, .doctor-certificates ul, .doctor-publications ul {
+    padding-left: 30px;
+}
+
+.doctor-career li, .doctor-certificates li, .doctor-publications li {
+    margin-bottom: 10px;
+    position: relative;
+    line-height: 1.6;
+}
+
+.specialties-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.specialties-tags span {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.approach-section .approach-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.approach-text {
+    grid-column: span 1;
+}
+
+.approach-quote {
+    grid-column: span 2;
+    margin: 20px auto;
+    max-width: 80%;
+}
+
+.approach-item {
+    margin-bottom: 25px;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.approach-item h3 {
+    color: var(--primary-color);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.approach-item h3 i {
+    color: var(--accent-color);
+    margin-right: 10px;
+}
+
+.approach-item p {
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.approach-quote blockquote {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 10px;
+    position: relative;
+    font-style: italic;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.approach-quote blockquote::before {
+    content: """;
+    position: absolute;
+    top: 0;
+    left: 10px;
+    font-size: 80px;
+    color: var(--accent-color);
+    opacity: 0.2;
+    line-height: 1;
+}
+
+.approach-quote blockquote cite {
+    display: block;
+    margin-top: 15px;
+    font-weight: 500;
+    font-style: normal;
+    color: var(--primary-color);
+}
+
+/* 이미지 번갈아가며 배치하기 */
+.doctor-profile:nth-child(odd) .doctor-content {
+    flex-direction: row-reverse;
+}
+
+.doctor-profile:nth-child(even) .doctor-content {
+    flex-direction: row;
+}
+
+/* 전문가 카드 프로필 호버 효과 */
+.doctor-profile:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 992px) {
+    .doctor-profile-section .doctor-content {
+        flex-direction: column !important;
+    }
+    
+    .doctor-profile-section .doctor-image {
+        width: 100%;
+        max-height: 300px;
+    }
+    
+    .approach-section .approach-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .approach-quote {
+        grid-column: span 1;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .team-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .team-tab {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .doctor-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .doctor-position {
+        margin-top: 5px;
+    }
+    
+    .specialties-tags {
+        justify-content: center;
+    }
+}
+
+/* 자격증 및 전문분야 카드 스타일 수정 */
+.qualification-section {
+    margin-top: 60px;
+    background-color: var(--background-light);
+    padding: 40px 0;
+    border-radius: 15px;
+}
+
+.qualifications-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.qualification-card {
+    background-color: var(--white);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: var(--shadow);
+    height: 100%;
+}
+
+.qualification-icon {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.qualification-icon i {
+    font-size: 40px;
+    color: var(--accent-color);
+}
+
+.qualification-card h3 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.qualification-card ul {
+    padding-left: 20px;
+}
+
+.qualification-card li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+/* 상담 접근 방식 섹션 개선 */
+.approach-section {
+    margin-top: 60px;
+}
+
+.approach-section .approach-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.approach-quote {
+    grid-column: 1 / -1;
+    margin: 30px auto;
+    max-width: 80%;
+}
+
+@media (max-width: 992px) {
+    .qualifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .approach-section .approach-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .approach-quote {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .qualifications-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 영업시간 페이지 개선 스타일 */
+.hours-section {
+    padding-bottom: 100px;
+}
+
+.hours-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.hours-info-card, 
+.hours-notice-card {
+    background-color: var(--white);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    height: 100%;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 15px;
+}
+
+.card-header i {
+    font-size: 28px;
+    color: var(--accent-color);
+    margin-right: 15px;
+}
+
+.card-header h2 {
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 24px;
+}
+
+.hours-table {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.hour-row {
+    display: flex;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.hour-row:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.hour-row.closed {
+    background-color: #f8f8f8;
+    color: var(--light-text);
+}
+
+.hour-row:last-child {
+    border-bottom: none;
+}
+
+.day {
+    flex: 1;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.time {
+    flex: 1;
+    text-align: right;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.time i {
+    margin-right: 8px;
+    color: var(--accent-color);
+}
+
+.hour-row.closed .time i {
+    color: var(--light-text);
+}
+
+.notice-list {
+    list-style: none;
+    padding: 0;
+}
+
+.notice-list li {
+    padding: 12px 0;
+    border-bottom: 1px dashed #e0e0e0;
+    display: flex;
+    align-items: flex-start;
+}
+
+.notice-list li:last-child {
+    border-bottom: none;
+}
+
+.notice-list li i {
+    color: var(--accent-color);
+    margin-right: 10px;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.notice-list strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.reservation-process-section {
+    margin-top: 60px;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.contact-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 15px;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border-radius: 30px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.contact-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.contact-btn i {
+    margin-right: 5px;
+}
+
+.reservation-cta {
+    margin-top: 60px;
+    padding: 40px;
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.reservation-cta h3 {
+    color: var(--primary-color);
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.reservation-cta p {
+    margin-bottom: 25px;
+    font-size: 16px;
+}
+
+.reservation-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.reservation-buttons .btn i {
+    margin-right: 8px;
+}
+
+@media (max-width: 992px) {
+    .hours-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .reservation-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .reservation-buttons .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-buttons {
+        flex-direction: column;
+    }
+    
+    .hour-row {
+        padding: 12px 15px;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .card-header i {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* 후기 페이지 스타일 개선 */
+.testimonial-hero {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 60px 0;
+    text-align: center;
+}
+
+.testimonial-hero h1 {
+    color: var(--white);
+    margin-bottom: 15px;
+    font-size: 32px;
+}
+
+.testimonial-hero p {
+    color: var(--white);
+    opacity: 0.9;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+/* 후기 게시판 스타일 개선 */
+.testimonials-board {
+    margin-top: 40px;
+    border-radius: 10px;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.testimonial-item {
+    padding: 20px;
+    border-bottom: 1px solid var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.testimonial-item:last-child {
+    border-bottom: none;
+}
+
+.testimonial-item:hover {
+    background-color: rgba(106, 141, 115, 0.05);
+}
+
+.testimonial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.testimonial-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.testimonial-title i {
+    color: var(--accent-color);
+    font-size: 16px;
+}
+
+.testimonial-meta {
+    display: flex;
+    gap: 15px;
+    font-size: 14px;
+    color: var(--light-text);
+    align-items: center;
+}
+
+.testimonial-program {
+    background-color: var(--secondary-color);
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.testimonial-content {
+    padding: 20px;
+    background-color: var(--background-light);
+    border-radius: 10px;
+    margin-top: 15px;
+    position: relative;
+    display: none;
+    line-height: 1.8;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.testimonial-content::before {
+    content: """;
+    position: absolute;
+    top: 0;
+    left: 15px;
+    font-size: 50px;
+    color: var(--accent-color);
+    opacity: 0.2;
+    font-family: serif;
+}
+
+.testimonial-text {
+    margin-bottom: 15px;
+}
+
+.testimonial-text p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+.testimonial-author {
+    text-align: right;
+    font-style: italic;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* 페이지네이션 개선 */
+.testimonial-pagination {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+    gap: 8px;
+}
+
+.page-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--white);
+    color: var(--text-color);
+    border: 1px solid var(--secondary-color);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.page-link:hover, .page-link.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 외부 링크 섹션 */
+.external-links-section {
+    margin: 60px 0;
+    padding: 40px;
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.external-links-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.external-links-section p {
+    margin-bottom: 30px;
+    color: var(--text-color);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+.external-links-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.external-link-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 24px;
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 50px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+}
+
+.external-link-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.external-link-btn i {
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+.blog-link {
+    margin-top: 20px;
+    text-align: right;
+}
+
+.read-more-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 20px;
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.read-more-link:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.read-more-link i {
+    margin-right: 8px;
+}
+
+/* 반응형 디자인 강화 */
+@media (max-width: 768px) {
+    .testimonial-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .testimonial-meta {
+        flex-wrap: wrap;
+    }
+    
+    .external-links-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .external-link-btn {
+        width: 100%;
+        max-width: 300px;
+        justify-content: center;
+    }
+    
+    .testimonial-content {
+        padding: 15px;
+    }
+    
+    .testimonial-hero {
+        padding: 40px 0;
+    }
+    
+    .testimonial-hero h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .testimonial-item {
+        padding: 15px;
+    }
+    
+    .testimonial-title {
+        font-size: 15px;
+    }
+    
+    .testimonial-pagination {
+        gap: 5px;
+    }
+    
+    .page-link {
+        width: 35px;
+        height: 35px;
+        font-size: 14px;
+    }
+    
+    .external-links-section {
+        padding: 25px 15px;
+    }
+    
+    .read-more-link {
+        padding: 6px 15px;
+        font-size: 13px;
+    }
 }

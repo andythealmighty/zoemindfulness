@@ -29,7 +29,18 @@
                 <nav>
                     <ul>
                         <li><a href="about.html">소개</a></li>
-                        <li><a href="programs.html">프로그램</a></li>
+                        <li class="accordion">
+                            <a href="programs.html">프로그램</a>
+                            <ul class="accordion-menu">
+                                <li><a href="programs.html">프로그램 소개</a></li>
+                                <li><a href="programs/individual.html">1:1 개인상담</a></li>
+                                <li><a href="programs/video.html">1:1 화상 개인상담</a></li>
+                                <li><a href="programs/couple.html">커플/부부/가족상담</a></li>
+                                <li><a href="programs/tci.html">TCI 기질 성격검사</a></li>
+                                <li><a href="programs/career.html">학습 및 진로 검사</a></li>
+                                <li><a href="programs/coaching.html">마음코칭</a></li>
+                            </ul>
+                        </li>
                         <li><a href="doctor.html">전문가 소개</a></li>
                         <li><a href="hours.html">영업시간</a></li>
                         <li><a href="location.html">오시는 길</a></li>
@@ -46,14 +57,24 @@
     
     <main>
         <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h2>마음이 아플 때는<br>조에심리상담센터와 함께하세요</h2>
-                    <p>심리상담 경력 15년 이상 / 상담학 박사학위 조수연 박사와 함께<br>
-                       행복한 일상으로 복귀하실 수 있도록 정성을 다하겠습니다.</p>
-                    <div class="hero-buttons">
-                        <a href="contact.html" class="btn primary-btn">상담 예약하기</a>
-                        <a href="programs.html" class="btn secondary-btn">프로그램 알아보기</a>
+            <div class="hero-slider">
+                <div class="slide active">
+                    <img src="images/slide1.jpg" alt="조에심리상담센터 상담실 1">
+                </div>
+                <div class="slide">
+                    <img src="images/slide2.jpg" alt="조에심리상담센터 상담실 2">
+                </div>
+            </div>
+            <div class="hero-overlay">
+                <div class="container">
+                    <div class="hero-content">
+                        <h2>마음이 아플 때는<br>조에심리상담센터와 함께하세요</h2>
+                        <p>심리상담 경력 15년 이상 / 상담학 박사학위 조수연 박사와 함께<br>
+                           행복한 일상으로 복귀하실 수 있도록 정성을 다하겠습니다.</p>
+                        <div class="hero-buttons">
+                            <a href="contact.html" class="btn primary-btn">상담 예약하기</a>
+                            <a href="programs.html" class="btn secondary-btn">프로그램 알아보기</a>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // 히어로 슬라이드쇼 기능
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    
+    if (slides.length > 1) {
+        function showSlide(index, direction = 'next') {
+            // 이전 슬라이드 찾기
+            const prevIndex = currentSlide;
+            
+            // 모든 슬라이드의 클래스 제거
+            slides.forEach(slide => {
+                slide.classList.remove('active', 'slide-in-right', 'slide-in-left', 'slide-out-right', 'slide-out-left');
+            });
+            
+            // 현재 슬라이드와 이전 슬라이드 설정
+            if (direction === 'next') {
+                // 이전 슬라이드가 있을 때만 애니메이션 적용
+                if (prevIndex !== index) {
+                    slides[prevIndex].classList.add('slide-out-left');
+                }
+                slides[index].classList.add('slide-in-right', 'active');
+            } else {
+                // 이전 슬라이드가 있을 때만 애니메이션 적용
+                if (prevIndex !== index) {
+                    slides[prevIndex].classList.add('slide-out-right');
+                }
+                slides[index].classList.add('slide-in-left', 'active');
+            }
+        }
+        
+        function nextSlide() {
+            const newSlide = (currentSlide + 1) % slides.length;
+            showSlide(newSlide, 'next');
+            currentSlide = newSlide;
+        }
+        
+        // 초기 슬라이드 설정
+        slides[0].classList.add('active');
+        slides[0].style.opacity = '1';
+        slides[0].style.transform = 'translateX(0)';
+        
+        // 4초마다 슬라이드 전환
+        setInterval(nextSlide, 4000);
+    }
+
     // 모바일 메뉴 토글
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.querySelector('nav');
@@ -70,6 +115,78 @@ document.addEventListener('DOMContentLoaded', function() {
         
         card.addEventListener('mouseleave', function() {
             this.classList.remove('hovered');
+        });
+    });
+    
+    // 프로그램 관련 페이지에서는 항상 메뉴 열기
+    const currentPath = window.location.pathname;
+    const programAccordion = document.querySelector('.accordion');
+    
+    if (programAccordion) {
+        // 프로그램 관련 페이지 확인
+        const isProgramPage = currentPath.includes('programs') || 
+                             currentPath.includes('individual') || 
+                             currentPath.includes('video') || 
+                             currentPath.includes('couple') || 
+                             currentPath.includes('tci') || 
+                             currentPath.includes('career') || 
+                             currentPath.includes('coaching');
+        
+        if (isProgramPage) {
+            // 프로그램 관련 페이지에서는 항상 메뉴 표시
+            programAccordion.classList.add('always-open');
+        } else {
+            // 다른 페이지에서는 저장된 상태 확인
+            const savedAccordionState = localStorage.getItem('accordionOpen');
+            if (savedAccordionState === 'true') {
+                programAccordion.classList.add('active');
+            }
+        }
+    }
+
+    // 아코디언 메뉴 기능 - 호버로 변경
+    const accordionItems = document.querySelectorAll('.accordion');
+    
+    accordionItems.forEach(accordion => {
+        // 마우스 진입 시 메뉴 열기
+        accordion.addEventListener('mouseenter', function() {
+            if (!this.classList.contains('always-open')) {
+                this.classList.add('active');
+            }
+        });
+        
+        // 마우스 떠날 시 메뉴 닫기 (always-open이 아닐 때만)
+        accordion.addEventListener('mouseleave', function() {
+            if (!this.classList.contains('always-open')) {
+                this.classList.remove('active');
+            }
+        });
+    });
+    
+    // 프로그램 메인 링크는 클릭 시 페이지 이동 허용
+    const programMainLink = document.querySelector('.accordion > a');
+    if (programMainLink) {
+        programMainLink.addEventListener('click', function(e) {
+            // 프로그램 페이지로 이동할 때 아코디언 상태 유지
+            localStorage.setItem('accordionOpen', 'true');
+        });
+    }
+    
+    // 세부 메뉴 링크 클릭 시 상태 유지
+    const accordionMenuLinks = document.querySelectorAll('.accordion-menu a');
+    accordionMenuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // 세부 메뉴 클릭 시 아코디언 상태 유지
+            localStorage.setItem('accordionOpen', 'true');
+        });
+    });
+
+    // 다른 메뉴 링크 클릭 시 아코디언 닫기
+    const otherNavLinks = document.querySelectorAll('nav ul li a:not(.accordion > a):not(.accordion-menu a)');
+    otherNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            // 다른 메뉴 클릭 시 아코디언 닫기
+            localStorage.setItem('accordionOpen', 'false');
         });
     });
     

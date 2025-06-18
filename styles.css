@@ -1966,7 +1966,7 @@ html {
 }
 
 .approach-quote blockquote::before {
-    content: """;
+    content: "\201C";
     position: absolute;
     top: 0;
     left: 10px;
@@ -2458,7 +2458,7 @@ html {
 }
 
 .testimonial-content::before {
-    content: """;
+    content: "\201C";
     position: absolute;
     top: 0;
     left: 15px;

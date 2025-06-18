@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // 페이지 로드 시 섹션별 애니메이션 효과
-    const sections = document.querySelectorAll('section');
+    const animationSections = document.querySelectorAll('section');
     
     const observerOptions = {
         root: null,
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
     
-    sections.forEach(section => {
+    animationSections.forEach(section => {
         sectionObserver.observe(section);
     });
     
@@ -191,13 +191,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 스크롤 시 현재 섹션 메뉴 활성화
-    const sections = document.querySelectorAll('section[id]');
+    const menuSections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('nav ul li a');
     
     function highlightNavigation() {
         let scrollPosition = window.scrollY + window.innerHeight / 2;
         
-        sections.forEach(section => {
+        menuSections.forEach(section => {
             const sectionTop = section.offsetTop - 100;
             const sectionBottom = sectionTop + section.offsetHeight;
             const sectionId = section.getAttribute('id');
@@ -238,8 +238,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.visibility = "visible";
     
     // 기존 애니메이션 교체
-    const sections = document.querySelectorAll('section');
-    sections.forEach(section => {
+    const styleSections = document.querySelectorAll('section');
+    styleSections.forEach(section => {
         section.style.opacity = "1";
         section.style.transform = "translateY(0)";
         // 기존에 observer가 있었다면 제거

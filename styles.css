@@ -286,7 +286,9 @@ a:hover {
     
     /* 모바일 메뉴 버튼 표시 */
     .mobile-menu-btn {
-        display: block;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
     }
     
     /* 메뉴 배경 오버레이 */
@@ -545,6 +547,13 @@ nav ul li a {
     transition: color 0.3s ease;
 }
 
+/* PC에서 모바일 메뉴 버튼 완전히 숨기기 */
+@media (min-width: 769px) {
+    .mobile-menu-btn {
+        display: none !important;
+    }
+}
+
 .mobile-menu-btn {
     display: none;
     font-size: 24px;
@@ -555,6 +564,20 @@ nav ul li a {
     background: none;
     z-index: 1001;
     position: relative;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.mobile-menu-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu-btn:active {
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 /* 히어로 섹션 슬라이드쇼 스타일 */
@@ -3056,7 +3079,6 @@ html {
     min-width: 800px;
 }
 
-.accordion:hover .accordion-menu,
 .accordion.active .accordion-menu,
 .accordion.always-open .accordion-menu {
     display: flex;

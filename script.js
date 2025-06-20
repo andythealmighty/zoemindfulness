@@ -44,23 +44,64 @@ document.addEventListener('DOMContentLoaded', function() {
         setInterval(nextSlide, 4000);
     }
 
-    // 모바일 메뉴 토글
+    // 모바일 메뉴 토글 - 개선된 버전
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const nav = document.querySelector('nav');
     
+    // 디버깅용 로그
+    console.log('모바일 메뉴 초기화 시작');
+    console.log('모바일 메뉴 버튼:', mobileMenuBtn);
+    console.log('네비게이션:', nav);
+    
     if (mobileMenuBtn && nav) {
+        console.log('모바일 메뉴 이벤트 리스너 등록');
+        
         // 햄버거 메뉴 버튼 클릭
         mobileMenuBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            nav.classList.toggle('active');
-            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
-        });
-        
-        // X 버튼 클릭 (가상 요소)
-        nav.addEventListener('click', function(e) {
-            if (e.target === nav) {
+            e.stopPropagation();
+            console.log('모바일 메뉴 버튼 클릭됨');
+            
+            const isActive = nav.classList.contains('active');
+            console.log('현재 활성 상태:', isActive);
+            
+            if (isActive) {
                 nav.classList.remove('active');
                 document.body.style.overflow = 'auto';
+                console.log('메뉴 닫힘');
+            } else {
+                nav.classList.add('active');
+                document.body.style.overflow = 'hidden';
+                console.log('메뉴 열림');
+            }
+        });
+        
+        // X 버튼 클릭 감지를 위한 처리 - 우상단 영역 클릭
+        document.addEventListener('click', function(e) {
+            if (nav.classList.contains('active')) {
+                const clickX = e.clientX;
+                const clickY = e.clientY;
+                
+                // 우상단 X 버튼 영역 클릭 감지
+                const closeButtonArea = {
+                    left: window.innerWidth - 60,
+                    right: window.innerWidth,
+                    top: 0,
+                    bottom: 60
+                };
+                
+                if (clickX >= closeButtonArea.left && clickX <= closeButtonArea.right && 
+                    clickY >= closeButtonArea.top && clickY <= closeButtonArea.bottom) {
+                    nav.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    console.log('X 버튼으로 메뉴 닫힘');
+                }
+                // 메뉴 외부 배경 클릭 시 메뉴 닫기
+                else if (e.target === nav) {
+                    nav.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    console.log('배경 클릭으로 메뉴 닫힘');
+                }
             }
         });
         
@@ -68,8 +109,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const navLinks = nav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                nav.classList.remove('active');
-                document.body.style.overflow = 'auto';
+                if (window.innerWidth <= 768) {
+                    nav.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                    console.log('메뉴 링크 클릭으로 메뉴 닫힘');
+                }
             });
         });
         
@@ -78,27 +122,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.key === 'Escape' && nav.classList.contains('active')) {
                 nav.classList.remove('active');
                 document.body.style.overflow = 'auto';
-            }
-        });
-        
-        // X 버튼 클릭 감지를 위한 처리 - 우상단 영역 클릭
-        document.addEventListener('click', function(e) {
-            if (nav.classList.contains('active')) {
-                const rect = nav.getBoundingClientRect();
-                const clickX = e.clientX;
-                const clickY = e.clientY;
-                
-                // 우상단 X 버튼 영역 클릭 감지 (20px 에서 60px 범위)
-                if (clickX >= window.innerWidth - 60 && clickX <= window.innerWidth - 0 && 
-                    clickY >= 0 && clickY <= 60) {
-                    nav.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-                // 메뉴 외부 배경 클릭 시 메뉴 닫기
-                else if (e.target === nav) {
-                    nav.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
+                console.log('ESC 키로 메뉴 닫힘');
             }
         });
         
@@ -108,11 +132,27 @@ document.addEventListener('DOMContentLoaded', function() {
             const accordionLink = accordion.querySelector('a');
             accordionLink.addEventListener('click', function(e) {
                 if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    accordion.classList.toggle('active');
+                    // 모바일에서는 첫 번째 클릭에 바로 페이지로 이동하도록 허용
+                    console.log('모바일 프로그램 메뉴 클릭 - 페이지 이동');
+                    localStorage.setItem('accordionOpen', 'true');
+                    // preventDefault를 제거하여 링크가 작동하도록 함
                 }
             });
         }
+        
+        // 화면 크기 변경 시 메뉴 상태 초기화
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                nav.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                console.log('화면 크기 변경으로 메뉴 초기화');
+            }
+        });
+        
+    } else {
+        console.error('모바일 메뉴 요소를 찾을 수 없습니다!');
+        console.error('모바일 메뉴 버튼:', mobileMenuBtn);
+        console.error('네비게이션:', nav);
     }
     
     // 부드러운 스크롤 기능 개선
@@ -215,31 +255,27 @@ document.addEventListener('DOMContentLoaded', function() {
             // 프로그램 관련 페이지에서는 항상 메뉴 표시
             programAccordion.classList.add('always-open');
         } else {
-            // 다른 페이지에서는 저장된 상태 확인
-            const savedAccordionState = localStorage.getItem('accordionOpen');
-            if (savedAccordionState === 'true') {
-                programAccordion.classList.add('active');
-            }
+            // 다른 페이지에서는 기본적으로 닫힌 상태 유지
+            // localStorage 상태는 무시하고 항상 닫힌 상태로 시작
+            programAccordion.classList.remove('active');
+            console.log('메인 페이지에서 아코디언 메뉴를 닫힌 상태로 초기화');
         }
     }
 
-    // 아코디언 메뉴 기능 - 호버로 변경
+    // 프로그램 메뉴 - 첫 클릭에 바로 페이지 이동
     const accordionItems = document.querySelectorAll('.accordion');
     
     accordionItems.forEach(accordion => {
-        // 마우스 진입 시 메뉴 열기
-        accordion.addEventListener('mouseenter', function() {
-            if (!this.classList.contains('always-open')) {
-                this.classList.add('active');
-            }
-        });
+        const accordionLink = accordion.querySelector('a');
         
-        // 마우스 떠날 시 메뉴 닫기 (always-open이 아닐 때만)
-        accordion.addEventListener('mouseleave', function() {
-            if (!this.classList.contains('always-open')) {
-                this.classList.remove('active');
-            }
-        });
+        if (accordionLink) {
+            accordionLink.addEventListener('click', function(e) {
+                // 프로그램 페이지로 이동할 때 아코디언 상태 유지
+                console.log('프로그램 메뉴 클릭 - 페이지 이동');
+                localStorage.setItem('accordionOpen', 'true');
+                // preventDefault 하지 않아서 기본 링크 동작 허용 (바로 페이지 이동)
+            });
+        }
     });
     
     // 프로그램 메인 링크는 클릭 시 페이지 이동 허용

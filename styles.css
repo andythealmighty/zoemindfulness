@@ -290,6 +290,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: all 0.3s ease;
+    will-change: transform, padding, background-color, box-shadow;
 }
 
 .header-content {
@@ -307,12 +309,14 @@ header {
     color: var(--primary-color);
     font-size: 28px;
     margin-bottom: 5px;
+    transition: font-size 0.3s ease;
 }
 
 .tagline {
     color: var(--light-text);
     font-size: 14px;
     margin-bottom: 0;
+    transition: font-size 0.3s ease;
 }
 
 nav ul {
@@ -587,7 +591,7 @@ section {
 }
 
 .doctor-image img {
-    width: 50%;
+    width: 100%;
     height: auto;
     display: block;
 }
@@ -1117,9 +1121,10 @@ footer {
 
 /* 스크롤 시 헤더 스타일 변경 */
 header.scrolled {
-    background-color: rgba(255, 255, 255, 0.95);
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 10px 0;
+    background-color: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    padding: 12px 0;
+    backdrop-filter: blur(10px);
 }
 
 header.scrolled .logo h1 {
@@ -2214,22 +2219,7 @@ html {
     position: relative;
 }
 
-/* 상담 접근 방식 섹션 개선 */
-.approach-section {
-    margin-top: 60px;
-}
 
-.approach-section .approach-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-}
-
-.approach-quote {
-    grid-column: 1 / -1;
-    margin: 30px auto;
-    max-width: 80%;
-}
 
 @media (max-width: 992px) {
     .qualifications-grid {
@@ -2293,11 +2283,7 @@ html {
     font-size: 24px;
 }
 
-.hours-table {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
+
 
 .hour-row {
     display: flex;
@@ -2553,6 +2539,8 @@ html {
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    /* 표준 CSS 대체: max-height로 대략적인 줄 수 제한 */
+    max-height: calc(1.4em * 3); /* line-height * 줄 수 */
 }
 
 .testimonial-header {
@@ -2624,14 +2612,7 @@ html {
     font-family: serif;
 }
 
-.testimonial-text {
-    margin-bottom: 15px;
-}
 
-.testimonial-text p {
-    margin-bottom: 15px;
-    line-height: 1.7;
-}
 
 .testimonial-author {
     text-align: right;
@@ -2784,6 +2765,8 @@ html {
     .testimonial-text p {
         font-size: 13px;
         -webkit-line-clamp: 2;
+        /* 표준 CSS 대체 */
+        max-height: calc(1.4em * 2);
     }
     
     .external-links-container {
@@ -2825,6 +2808,8 @@ html {
     .testimonial-text p {
         font-size: 14px;
         -webkit-line-clamp: 3;
+        /* 표준 CSS 대체 */
+        max-height: calc(1.4em * 3);
     }
     
     .external-links-section {

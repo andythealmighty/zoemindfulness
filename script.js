@@ -94,16 +94,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 스크롤 시 헤더 스타일 변경
+    // 스크롤 시 헤더 스타일 변경 - 성능 최적화
     const header = document.querySelector('header');
+    let isScrolled = false;
+    let ticking = false;
     
-    window.addEventListener('scroll', function() {
+    function updateHeader() {
         if (window.scrollY > 50) {
-            header.classList.add('scrolled');
+            if (!isScrolled) {
+                header.classList.add('scrolled');
+                isScrolled = true;
+            }
         } else {
-            header.classList.remove('scrolled');
+            if (isScrolled) {
+                header.classList.remove('scrolled');
+                isScrolled = false;
+            }
         }
-    });
+        ticking = false;
+    }
+    
+    function requestScrollUpdate() {
+        if (!ticking) {
+            requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
+    }
+    
+    window.addEventListener('scroll', requestScrollUpdate, { passive: true });
     
     // 프로그램 카드에 마우스 호버 효과
     const programCards = document.querySelectorAll('.program-card');
@@ -284,22 +302,16 @@ document.addEventListener('DOMContentLoaded', function() {
         sectionObserver.observe(section);
     });
     
-    // 맨 위로 버튼 제어
+    // 맨 위로 버튼 제어 - 기존 최적화된 스크롤 이벤트에 통합
     const backToTopButton = document.querySelector('.back-to-top');
+    let isBackToTopVisible = false;
+    
+    // 중복 함수 제거 (updateAllScrollEffects로 통합됨)
     
     if (backToTopButton) {
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
-                backToTopButton.classList.add('visible');
-            } else {
-                backToTopButton.classList.remove('visible');
-            }
-        });
-        
         backToTopButton.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // 스무스 스크롤 애니메이션
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -330,7 +342,51 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    window.addEventListener('scroll', highlightNavigation);
+    // 기존 updateHeaderAndButton 함수를 확장하여 네비게이션 하이라이트도 포함
+    function updateAllScrollEffects() {
+        const scrollY = window.scrollY;
+        
+        // 헤더 스타일 제어
+        if (scrollY > 50) {
+            if (!isScrolled) {
+                header.classList.add('scrolled');
+                isScrolled = true;
+            }
+        } else {
+            if (isScrolled) {
+                header.classList.remove('scrolled');
+                isScrolled = false;
+            }
+        }
+        
+        // 맨 위로 버튼 제어
+        if (backToTopButton) {
+            if (scrollY > 300) {
+                if (!isBackToTopVisible) {
+                    backToTopButton.classList.add('visible');
+                    isBackToTopVisible = true;
+                }
+            } else {
+                if (isBackToTopVisible) {
+                    backToTopButton.classList.remove('visible');
+                    isBackToTopVisible = false;
+                }
+            }
+        }
+        
+        // 네비게이션 하이라이트
+        highlightNavigation();
+        
+        ticking = false;
+    }
+    
+    // requestScrollUpdate 함수 업데이트
+    function requestScrollUpdate() {
+        if (!ticking) {
+            requestAnimationFrame(updateAllScrollEffects);
+            ticking = true;
+        }
+    }
     highlightNavigation(); // 페이지 로드 시 실행
     
     // 페이지 로드 시 해시가 있으면 해당 섹션으로 스크롤

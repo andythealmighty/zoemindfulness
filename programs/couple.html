@@ -11,8 +11,7 @@
     <link rel="stylesheet" href="program-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+
     <style>
         /* 임시 스타일 추가 - 페이지 깜빡임 방지 */
         html, body, main, section, div {
@@ -39,8 +38,16 @@
                 </div>
                 <nav>
                     <ul>
-                        <li><a href="../about.html">소개</a></li>
-                        <li class="accordion">
+                        <li class="accordion about-accordion">
+                            <a href="../about.html">소개</a>
+                            <ul class="accordion-menu about-menu">
+                                <li><a href="../about.html">센터 소개</a></li>
+                                <li><a href="../doctor.html">전문가 소개</a></li>
+                                <li><a href="../hours.html">영업시간</a></li>
+                                <li><a href="../location.html">오시는 길</a></li>
+                            </ul>
+                        </li>
+                        <li class="accordion program-accordion">
                             <a href="../programs.html">프로그램</a>
                             <ul class="accordion-menu">
                                 <li><a href="../programs.html">프로그램 소개</a></li>
@@ -52,11 +59,15 @@
                                 <li><a href="coaching.html">마음코칭</a></li>
                             </ul>
                         </li>
-                        <li><a href="../doctor.html">전문가 소개</a></li>
-                        <li><a href="../testimonials.html">상담후기</a></li>
+                        <li class="accordion testimonials-accordion">
+                            <a href="../testimonials/handwritten.html">상담후기</a>
+                            <ul class="accordion-menu testimonials-menu">
+                                <li><a href="../testimonials/handwritten.html">자필 상담후기</a></li>
+                                <li><a href="../testimonials/naver.html">네이버 상담후기</a></li>
+                                <li><a href="../testimonials.html">블로그 상담후기</a></li>
+                            </ul>
+                        </li>
                         <li><a href="../healing-guide.html">힐링가이드</a></li>
-                        <li><a href="../hours.html">영업시간</a></li>
-                        <li><a href="../location.html">오시는 길</a></li>
                         <li><a href="../contact.html" class="btn">상담 문의</a></li>
                     </ul>
                 </nav>

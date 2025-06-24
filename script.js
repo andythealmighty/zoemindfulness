@@ -237,72 +237,386 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // 프로그램 관련 페이지에서는 항상 메뉴 열기
+    // 모든 아코디언에서 잘못된 클래스 제거 (페이지 로드 시)
+    document.querySelectorAll('.accordion').forEach(el => {
+        el.classList.remove('hover-active');
+    });
+
+    // localStorage 초기화 제거됨 - 메뉴 상태 유지
+
+    // 관련 페이지에서는 항상 메뉴 열기
     const currentPath = window.location.pathname;
-    const programAccordion = document.querySelector('.accordion');
+    const programAccordion = document.querySelector('.program-accordion');
+    const aboutAccordion = document.querySelector('.about-accordion');
+    const testimonialsAccordion = document.querySelector('.testimonials-accordion');
     
-    if (programAccordion) {
-        // 프로그램 관련 페이지 확인
-        const isProgramPage = currentPath.includes('programs') || 
-                             currentPath.includes('individual') || 
-                             currentPath.includes('video') || 
-                             currentPath.includes('couple') || 
-                             currentPath.includes('tci') || 
-                             currentPath.includes('career') || 
-                             currentPath.includes('coaching');
-        
-        if (isProgramPage) {
-            // 프로그램 관련 페이지에서는 항상 메뉴 표시
-            programAccordion.classList.add('always-open');
-        } else {
-            // 다른 페이지에서는 기본적으로 닫힌 상태 유지
-            // localStorage 상태는 무시하고 항상 닫힌 상태로 시작
-            programAccordion.classList.remove('active');
-            console.log('메인 페이지에서 아코디언 메뉴를 닫힌 상태로 초기화');
+    // 디버깅: 페이지 로드 시 아코디언 상태 확인
+    console.log('=== 페이지 로드 시 아코디언 상태 ===');
+    console.log('상담후기 아코디언 요소:', testimonialsAccordion);
+    if (testimonialsAccordion) {
+        console.log('상담후기 아코디언 클래스:', testimonialsAccordion.className);
+    }
+    
+    // 디버깅: 요소들이 제대로 선택되었는지 확인
+    console.log('아코디언 요소 확인:');
+    console.log('프로그램:', programAccordion);
+    console.log('소개:', aboutAccordion);
+    console.log('상담후기:', testimonialsAccordion);
+    
+    // 프로그램 관련 페이지 확인
+    const isProgramPage = currentPath.includes('programs') || 
+                         currentPath.includes('individual') || 
+                         currentPath.includes('video') || 
+                         currentPath.includes('couple') || 
+                         currentPath.includes('tci') || 
+                         currentPath.includes('career') || 
+                         currentPath.includes('coaching');
+    
+    // 소개 관련 페이지 확인
+    const isAboutPage = currentPath.includes('about') || 
+                        currentPath.includes('doctor') || 
+                        currentPath.includes('hours') || 
+                        currentPath.includes('location');
+
+    // 상담후기 관련 페이지 확인 (확장)
+    const isTestimonialsPage = currentPath.includes('testimonials') || 
+                               currentPath.includes('handwritten') || 
+                               currentPath.includes('naver') ||
+                               currentPath === '/testimonials.html' ||
+                               currentPath.endsWith('/testimonials.html');
+    
+    // 디버깅: 현재 페이지 정보
+    console.log('현재 경로:', currentPath);
+    console.log('프로그램 페이지:', isProgramPage);
+    console.log('소개 페이지:', isAboutPage);
+    console.log('상담후기 페이지:', isTestimonialsPage);
+    
+    if (programAccordion && isProgramPage) {
+        // 프로그램 관련 페이지에서는 항상 메뉴 표시
+        programAccordion.classList.add('always-open');
+        console.log('프로그램 페이지에서 프로그램 메뉴 열기');
+    }
+    
+    if (aboutAccordion && isAboutPage) {
+        // 소개 관련 페이지에서는 항상 메뉴 표시
+        aboutAccordion.classList.add('always-open');
+        console.log('소개 페이지에서 소개 메뉴 열기');
+    }
+
+    if (testimonialsAccordion && isTestimonialsPage) {
+        // 상담후기 관련 페이지에서는 항상 메뉴 표시
+        testimonialsAccordion.classList.add('always-open');
+        console.log('상담후기 페이지에서 상담후기 메뉴 열기');
+    } else {
+        console.log('상담후기 페이지가 아니므로 메뉴 열지 않음');
+    }
+    
+    // localStorage에서 메뉴 상태 복원
+    const programAccordionState = localStorage.getItem('programAccordionOpen');
+    const aboutAccordionState = localStorage.getItem('aboutAccordionOpen');
+    const testimonialsAccordionState = localStorage.getItem('testimonialsAccordionOpen');
+    
+    // 기본적으로 모든 메뉴를 닫힌 상태로 시작
+    if (programAccordion && !isProgramPage) {
+        programAccordion.classList.remove('active');
+        // localStorage 값이 명시적으로 'true'인 경우에만 열기
+        if (programAccordionState === 'true') {
+            programAccordion.classList.add('active');
+            console.log('프로그램 메뉴 상태 복원: 열림');
+        }
+    }
+    
+    if (aboutAccordion && !isAboutPage) {
+        aboutAccordion.classList.remove('active');
+        // localStorage 값이 명시적으로 'true'인 경우에만 열기
+        if (aboutAccordionState === 'true') {
+            aboutAccordion.classList.add('active');
+            console.log('소개 메뉴 상태 복원: 열림');
         }
     }
 
-    // 프로그램 메뉴 - 첫 클릭에 바로 페이지 이동
-    const accordionItems = document.querySelectorAll('.accordion');
+    if (testimonialsAccordion && !isTestimonialsPage) {
+        testimonialsAccordion.classList.remove('active');
+        // localStorage 값이 명시적으로 'true'인 경우에만 열기
+        if (testimonialsAccordionState === 'true') {
+            testimonialsAccordion.classList.add('active');
+            console.log('상담후기 메뉴 상태 복원: 열림');
+        }
+    }
     
-    accordionItems.forEach(accordion => {
+    // localStorage에 값이 없는 경우 기본값을 'false'로 설정
+    if (programAccordionState === null) {
+        localStorage.setItem('programAccordionOpen', 'false');
+    }
+    if (aboutAccordionState === null) {
+        localStorage.setItem('aboutAccordionOpen', 'false');
+    }
+    if (testimonialsAccordionState === null) {
+        localStorage.setItem('testimonialsAccordionOpen', 'false');
+    }
+
+    // 아코디언 메뉴 토글 기능
+    const accordionItems = document.querySelectorAll('.accordion');
+    const programAccordionEl = document.querySelector('.program-accordion');
+    const aboutAccordionEl = document.querySelector('.about-accordion');
+    const testimonialsAccordionEl = document.querySelector('.testimonials-accordion');
+    
+    // 디버깅: 아코디언 요소들과 이벤트 바인딩 확인
+    console.log('=== 아코디언 이벤트 바인딩 ===');
+    console.log('전체 아코디언 개수:', accordionItems.length);
+    console.log('상담후기 아코디언 요소 (El):', testimonialsAccordionEl);
+    
+    // 상담후기 아코디언을 직접 찾아보기
+    const testimonialsAccordionDirect = document.querySelector('li.testimonials-accordion');
+    console.log('직접 검색한 상담후기 아코디언:', testimonialsAccordionDirect);
+    const testimonialsAccordionAll = document.querySelectorAll('.testimonials-accordion');
+    console.log('모든 상담후기 아코디언:', testimonialsAccordionAll);
+    
+    // 상담후기 아코디언에 직접 테스트 이벤트 바인딩
+    // 상담후기 아코디언은 일반적인 방식으로 처리 (별도 강제 이벤트 제거)
+    
+
+    
+    accordionItems.forEach((accordion, index) => {
         const accordionLink = accordion.querySelector('a');
+        
+
         
         if (accordionLink) {
             accordionLink.addEventListener('click', function(e) {
-                // 프로그램 페이지로 이동할 때 아코디언 상태 유지
-                console.log('프로그램 메뉴 클릭 - 페이지 이동');
-                localStorage.setItem('accordionOpen', 'true');
-                // preventDefault 하지 않아서 기본 링크 동작 허용 (바로 페이지 이동)
+                // 현재 클릭한 아코디언 타입 확인
+                const isAboutAccordion = accordion.className.includes('about-accordion');
+                const isTestimonialsAccordion = accordion.className.includes('testimonials-accordion');
+                const isProgramAccordion = accordion.className.includes('program-accordion');
+                
+                // 모바일에서는 항상 토글, 데스크톱에서는 조건부 토글
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    
+                    // 다른 아코디언들이 열려있으면 닫기
+                    if (isAboutAccordion) {
+                        if (programAccordionEl) programAccordionEl.classList.remove('active');
+                        if (testimonialsAccordionEl) testimonialsAccordionEl.classList.remove('active');
+                    } else if (isTestimonialsAccordion) {
+                        if (programAccordionEl) programAccordionEl.classList.remove('active');
+                        if (aboutAccordionEl) aboutAccordionEl.classList.remove('active');
+                    } else if (isProgramAccordion) {
+                        if (aboutAccordionEl) aboutAccordionEl.classList.remove('active');
+                        if (testimonialsAccordionEl) testimonialsAccordionEl.classList.remove('active');
+                    }
+                    
+                    // 현재 아코디언 토글
+                    accordion.classList.toggle('active');
+                    
+                    // localStorage 상태 업데이트
+                    if (isAboutAccordion) {
+                        localStorage.setItem('aboutAccordionOpen', accordion.classList.contains('active').toString());
+                    } else if (isTestimonialsAccordion) {
+                        localStorage.setItem('testimonialsAccordionOpen', accordion.classList.contains('active').toString());
+                    } else if (isProgramAccordion) {
+                        localStorage.setItem('programAccordionOpen', accordion.classList.contains('active').toString());
+                    }
+                } else {
+                    // 데스크톱에서 이미 열린 메뉴를 다시 클릭하면 닫기
+                    if (accordion.classList.contains('active')) {
+                        e.preventDefault();
+                        accordion.classList.remove('active');
+                        
+                        // localStorage 상태도 업데이트
+                        if (isAboutAccordion) {
+                            localStorage.setItem('aboutAccordionOpen', 'false');
+                        } else if (isTestimonialsAccordion) {
+                            localStorage.setItem('testimonialsAccordionOpen', 'false');
+                        } else {
+                            localStorage.setItem('programAccordionOpen', 'false');
+                        }
+
+                        return;
+                    }
+                    
+                    // 다른 아코디언들이 열려있으면 닫기 및 localStorage 업데이트
+                    if (isAboutAccordion) {
+                        if (programAccordionEl) programAccordionEl.classList.remove('active');
+                        if (testimonialsAccordionEl) testimonialsAccordionEl.classList.remove('active');
+                        localStorage.setItem('aboutAccordionOpen', 'true');
+                        localStorage.setItem('programAccordionOpen', 'false');
+                        localStorage.setItem('testimonialsAccordionOpen', 'false');
+                    } else if (isTestimonialsAccordion) {
+                        // 상담후기는 아코디언 상태를 토글하면서 자필 상담후기로 이동
+                        if (programAccordionEl) programAccordionEl.classList.remove('active');
+                        if (aboutAccordionEl) aboutAccordionEl.classList.remove('active');
+                        testimonialsAccordionEl.classList.add('active');
+                        localStorage.setItem('testimonialsAccordionOpen', 'true');
+                        localStorage.setItem('programAccordionOpen', 'false');
+                        localStorage.setItem('aboutAccordionOpen', 'false');
+                    } else if (isProgramAccordion) {
+                        if (aboutAccordionEl) aboutAccordionEl.classList.remove('active');
+                        if (testimonialsAccordionEl) testimonialsAccordionEl.classList.remove('active');
+                        localStorage.setItem('programAccordionOpen', 'true');
+                        localStorage.setItem('aboutAccordionOpen', 'false');
+                        localStorage.setItem('testimonialsAccordionOpen', 'false');
+                    }
+                }
+                // 데스크톱에서는 기본 링크 동작 허용 (페이지 이동) - 단, 이미 열린 메뉴가 아닌 경우
             });
         }
     });
     
-    // 프로그램 메인 링크는 클릭 시 페이지 이동 허용
-    const programMainLink = document.querySelector('.accordion > a');
+    // 프로그램 메인 링크 클릭 시 상태 유지
+    const programMainLink = document.querySelector('.program-accordion > a');
     if (programMainLink) {
         programMainLink.addEventListener('click', function(e) {
+            // 다른 메뉴들 닫기
+            if (aboutAccordionEl) {
+                aboutAccordionEl.classList.remove('active');
+            }
+            if (testimonialsAccordionEl) {
+                testimonialsAccordionEl.classList.remove('active');
+            }
             // 프로그램 페이지로 이동할 때 아코디언 상태 유지
-            localStorage.setItem('accordionOpen', 'true');
+            localStorage.setItem('programAccordionOpen', 'true');
+            localStorage.setItem('aboutAccordionOpen', 'false');
+            localStorage.setItem('testimonialsAccordionOpen', 'false');
         });
     }
     
-    // 세부 메뉴 링크 클릭 시 상태 유지
-    const accordionMenuLinks = document.querySelectorAll('.accordion-menu a');
-    accordionMenuLinks.forEach(link => {
+    // 소개 메인 링크 클릭 시 상태 유지
+    const aboutMainLink = document.querySelector('.about-accordion > a');
+    if (aboutMainLink) {
+        aboutMainLink.addEventListener('click', function(e) {
+            // 다른 메뉴들 닫기
+            if (programAccordionEl) {
+                programAccordionEl.classList.remove('active');
+            }
+            if (testimonialsAccordionEl) {
+                testimonialsAccordionEl.classList.remove('active');
+            }
+            // 소개 페이지로 이동할 때 아코디언 상태 유지
+            localStorage.setItem('aboutAccordionOpen', 'true');
+            localStorage.setItem('programAccordionOpen', 'false');
+            localStorage.setItem('testimonialsAccordionOpen', 'false');
+        });
+    }
+
+    // 상담후기 메인 링크 클릭 시 상태 유지
+    const testimonialsMainLink = document.querySelector('.testimonials-accordion > a');
+    if (testimonialsMainLink) {
+        testimonialsMainLink.addEventListener('click', function(e) {
+            // 다른 메뉴들 닫기
+            if (aboutAccordionEl) {
+                aboutAccordionEl.classList.remove('active');
+            }
+            if (programAccordionEl) {
+                programAccordionEl.classList.remove('active');
+            }
+            // 상담후기 페이지로 이동할 때 아코디언 상태 유지
+            localStorage.setItem('testimonialsAccordionOpen', 'true');
+            localStorage.setItem('aboutAccordionOpen', 'false');
+            localStorage.setItem('programAccordionOpen', 'false');
+        });
+    }
+    
+    // 프로그램 세부 메뉴 링크 클릭 시 상태 유지
+    const programMenuLinks = document.querySelectorAll('.program-accordion .accordion-menu a');
+    programMenuLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // 세부 메뉴 클릭 시 아코디언 상태 유지
-            localStorage.setItem('accordionOpen', 'true');
+            // 프로그램 세부 메뉴 클릭 시 아코디언 상태 유지
+            localStorage.setItem('programAccordionOpen', 'true');
         });
     });
+    
+    // 소개 세부 메뉴 링크 클릭 시 상태 유지
+    const aboutMenuLinks = document.querySelectorAll('.about-accordion .accordion-menu a');
+    aboutMenuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // 소개 세부 메뉴 클릭 시 아코디언 상태 유지
+            localStorage.setItem('aboutAccordionOpen', 'true');
+        });
+    });
+
+    // 상담후기 세부 메뉴 링크 클릭 시 상태 유지
+    const testimonialsMenuLinks = document.querySelectorAll('.testimonials-accordion .accordion-menu a');
+    testimonialsMenuLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // 상담후기 세부 메뉴 클릭 시 아코디언 상태 유지
+            localStorage.setItem('testimonialsAccordionOpen', 'true');
+        });
+    });
+
+    // 로고 클릭 시 아코디언 닫기 (로고 전체 div에 클릭 이벤트 적용)
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        // 로고를 클릭 가능하도록 커서 스타일 추가
+        logo.style.cursor = 'pointer';
+        
+        logo.addEventListener('click', function() {
+            // 로고 클릭 시 모든 아코디언 즉시 닫기
+            if (programAccordionEl) {
+                programAccordionEl.classList.remove('active');
+                programAccordionEl.classList.remove('hover-active');
+            }
+            if (aboutAccordionEl) {
+                aboutAccordionEl.classList.remove('active');
+                aboutAccordionEl.classList.remove('hover-active');
+            }
+            if (testimonialsAccordionEl) {
+                testimonialsAccordionEl.classList.remove('active');
+                testimonialsAccordionEl.classList.remove('hover-active');
+            }
+            localStorage.setItem('programAccordionOpen', 'false');
+            localStorage.setItem('aboutAccordionOpen', 'false');
+            localStorage.setItem('testimonialsAccordionOpen', 'false');
+            
+            // 홈으로 이동
+            window.location.href = 'index.html';
+        });
+    }
 
     // 다른 메뉴 링크 클릭 시 아코디언 닫기
     const otherNavLinks = document.querySelectorAll('nav ul li a:not(.accordion > a):not(.accordion-menu a)');
     otherNavLinks.forEach(link => {
         link.addEventListener('click', function() {
-            // 다른 메뉴 클릭 시 아코디언 닫기
-            localStorage.setItem('accordionOpen', 'false');
+            // 다른 메뉴 클릭 시 모든 아코디언 닫기
+            if (programAccordionEl) {
+                programAccordionEl.classList.remove('active');
+            }
+            if (aboutAccordionEl) {
+                aboutAccordionEl.classList.remove('active');
+            }
+            if (testimonialsAccordionEl) {
+                testimonialsAccordionEl.classList.remove('active');
+            }
+            localStorage.setItem('programAccordionOpen', 'false');
+            localStorage.setItem('aboutAccordionOpen', 'false');
+            localStorage.setItem('testimonialsAccordionOpen', 'false');
         });
+    });
+
+    // 자동 호버 기능 제거됨 - 클릭으로만 메뉴 제어
+
+    // 페이지 밖 클릭 시 아코디언 메뉴 닫기
+    document.addEventListener('click', function(e) {
+        // 네비게이션 영역 밖을 클릭했는지 확인
+        const navElement = document.querySelector('nav');
+        if (navElement && !navElement.contains(e.target)) {
+            // 모든 아코디언 메뉴 닫기
+            if (programAccordionEl && programAccordionEl.classList.contains('active')) {
+                programAccordionEl.classList.remove('active');
+                localStorage.setItem('programAccordionOpen', 'false');
+            }
+            if (aboutAccordionEl && aboutAccordionEl.classList.contains('active')) {
+                aboutAccordionEl.classList.remove('active');
+                localStorage.setItem('aboutAccordionOpen', 'false');
+            }
+            if (testimonialsAccordionEl && testimonialsAccordionEl.classList.contains('active')) {
+                testimonialsAccordionEl.classList.remove('active');
+                localStorage.setItem('testimonialsAccordionOpen', 'false');
+            }
+            // 호버 상태도 제거 (필요시)
+            accordionItems.forEach(accordion => {
+                accordion.classList.remove('hover-active');
+            });
+        }
     });
     
     // 전화번호 입력 필드 형식 지정

@@ -3089,6 +3089,32 @@ html {
     min-width: 800px;
 }
 
+/* 소개 메뉴만 작게 */
+.about-menu {
+    left: -80px;
+    width: auto;
+    min-width: 400px;
+    max-width: 500px;
+    z-index: 1001; /* 프로그램 메뉴보다 위에 표시 */
+}
+
+/* 상담후기 메뉴 스타일 */
+.testimonials-menu {
+    left: -60px;
+    width: auto;
+    min-width: 300px;
+    max-width: 380px;
+    z-index: 1002; /* 다른 메뉴보다 위에 표시 */
+}
+
+/* 데스크톱에서 호버로 메뉴 표시 */
+@media (min-width: 769px) {
+    .accordion.hover-active .accordion-menu {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+}
+
 .accordion.active .accordion-menu,
 .accordion.always-open .accordion-menu {
     display: flex;
@@ -3114,12 +3140,63 @@ html {
     color: var(--text-color);
     text-decoration: none;
     font-size: 12px;
-    transition: all 0.3s ease;
+    transition: background-color 0.15s ease, color 0.15s ease;
     background-color: transparent;
     font-weight: 400;
     text-align: center;
     height: 45px;
     white-space: nowrap;
+}
+
+/* 소개 메뉴 링크 스타일 */
+.about-menu a {
+    padding: 12px 16px;
+    font-size: 13px;
+}
+
+/* 상담후기 메뉴 링크 스타일 */
+.testimonials-menu a {
+    padding: 12px 14px;
+    font-size: 13px;
+}
+
+/* 네이버 후기 스타일 */
+.testimonial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.testimonial-title i {
+    color: #ffc107;
+    margin-right: 2px;
+}
+
+.testimonial-meta {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.testimonial-content {
+    margin-bottom: 15px;
+}
+
+.testimonial-content p {
+    line-height: 1.6;
+    color: var(--text-color);
+    font-style: italic;
+}
+
+.testimonial-author {
+    text-align: right;
+    font-size: 14px;
+    color: var(--secondary-color);
+    font-weight: 500;
 }
 
 .accordion-menu a:hover {
@@ -3154,7 +3231,8 @@ html {
         flex-direction: column;
     }
     
-    .accordion.active .accordion-menu {
+    .accordion.active .accordion-menu,
+    .accordion.always-open .accordion-menu {
         display: flex;
     }
     

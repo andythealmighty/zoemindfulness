@@ -2997,8 +2997,8 @@ html {
         padding: 30px 0;
     }
     
-    .testimonial-image {
-        height: 150px;
+    .testimonial-image, .handwritten-testimonials .testimonial-image {
+        height: 200px;
     }
     
     .testimonial-text {
@@ -3040,8 +3040,8 @@ html {
         padding: 20px 0;
     }
     
-    .testimonial-image {
-        height: 180px;
+    .testimonial-image, .handwritten-testimonials .testimonial-image {
+        height: 220px;
     }
     
     .testimonial-text {
@@ -3304,5 +3304,258 @@ html {
     
     .hero-content p {
         font-size: 20px;
+    }
+}
+
+/* 게시판 스타일 */
+
+.board-content {
+    padding: 60px 0;
+}
+
+
+
+.board-list {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.board-item {
+    background: var(--white);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    cursor: pointer;
+}
+
+.board-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.board-item.active {
+    box-shadow: 0 4px 20px rgba(106, 141, 115, 0.15);
+}
+
+.post-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.post-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+.post-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    background-color: #fafafa;
+}
+
+.post-content.active {
+    max-height: 1000px;
+    border-top: 1px solid #e9ecef;
+}
+
+.content-text {
+    padding: 25px 30px;
+    line-height: 1.7;
+}
+
+.content-text p {
+    margin-bottom: 15px;
+    color: var(--text-color);
+}
+
+.content-text p:last-child {
+    margin-bottom: 0;
+}
+
+.content-text strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.content-text p strong {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--primary-color);
+    font-size: 1.05rem;
+}
+
+
+
+/* 자필 상담후기 전용 스타일 */
+.handwritten-testimonials .testimonial-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.handwritten-testimonials .testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.handwritten-testimonials .testimonial-image {
+    width: 100%;
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.handwritten-testimonials .testimonial-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.handwritten-testimonials .testimonial-card:hover .testimonial-image img {
+    transform: scale(1.05);
+}
+
+.handwritten-testimonials .testimonial-image {
+    cursor: pointer;
+}
+
+/* 이미지 모달 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-content {
+    position: relative;
+    margin: auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    animation: zoomIn 0.3s ease-in-out;
+}
+
+.modal-caption {
+    color: white;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 10000;
+}
+
+.close:hover {
+    color: var(--primary-color);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { 
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 10px;
+    }
+    
+    .modal img {
+        max-height: 70vh;
+    }
+    
+    .close {
+        top: 20px;
+        right: 20px;
+        font-size: 30px;
+    }
+    
+    .modal-caption {
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+}
+
+/* 반응형 게시판 스타일 */
+@media (max-width: 768px) {
+    .board-content {
+        padding: 40px 0;
+    }
+    
+    .post-header {
+        padding: 18px 20px;
+    }
+    
+    .post-title {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .content-text {
+        padding: 20px;
+        font-size: 0.95rem;
+    }
+    
+    .content-text p strong {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-header {
+        padding: 15px;
+    }
+    
+    .post-title {
+        font-size: 0.95rem;
+    }
+    
+    .content-text {
+        padding: 15px;
+        font-size: 0.9rem;
     }
 }

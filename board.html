@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="조에심리상담센터 게시판입니다. 심리상담 관련 유용한 정보와 공지사항을 확인하세요.">
+    <meta name="keywords" content="수원심리상담, 광교심리상담, 게시판, 공지사항, 심리상담정보">
+    <title>게시판 | 조에심리상담센터</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a href="#" class="back-to-top" aria-label="맨 위로 이동">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+    
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <h1>조에심리상담센터</h1>
+                        <p class="tagline">행복한 일상으로의 여정</p>
+                    </a>
+                </div>
+                <nav>
+                    <ul>
+                        <li class="accordion about-accordion">
+                            <a href="about.html">소개</a>
+                            <ul class="accordion-menu about-menu">
+                                <li><a href="about.html">센터 소개</a></li>
+                                <li><a href="doctor.html">전문가 소개</a></li>
+                                <li><a href="hours.html">영업시간</a></li>
+                                <li><a href="location.html">오시는 길</a></li>
+                            </ul>
+                        </li>
+                        <li class="accordion program-accordion">
+                            <a href="programs.html">프로그램</a>
+                            <ul class="accordion-menu">
+                                <li><a href="programs.html">프로그램 소개</a></li>
+                                <li><a href="programs/individual.html">1:1 개인상담</a></li>
+                                <li><a href="programs/video.html">1:1 화상 개인상담</a></li>
+                                <li><a href="programs/couple.html">커플/부부/가족상담</a></li>
+                                <li><a href="programs/tci.html">TCI 기질 성격검사</a></li>
+                                <li><a href="programs/career.html">학습 및 진로 검사</a></li>
+                                <li><a href="programs/coaching.html">마음코칭</a></li>
+                            </ul>
+                        </li>
+                        <li class="accordion testimonials-accordion">
+                            <a href="testimonials/handwritten.html">상담후기</a>
+                            <ul class="accordion-menu testimonials-menu">
+                                <li><a href="testimonials/handwritten.html">자필 상담후기</a></li>
+                                <li><a href="https://map.naver.com/p/entry/place/1018451095?c=15.00,0,0,0,dh&placePath=/review?additionalHeight=76&from=map&fromPanelNum=1&locale=ko&svcName=map_pcv5&timestamp=202506251609&fromPanelNum=1&additionalHeight=76&timestamp=202506251609&locale=ko&svcName=map_pcv5" target="_blank">네이버 상담후기</a></li>
+                                <li><a href="testimonials.html">블로그 상담후기</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="healing-guide.html">힐링가이드</a></li>
+                        <li><a href="board.html">게시판</a></li>
+                        <li><a href="contact.html" class="btn">상담 문의</a></li>
+                    </ul>
+                </nav>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <section class="page-header">
+            <div class="container">
+                <h1>게시판</h1>
+                <p>조에심리상담센터의 공지사항과 심리상담 관련 유용한 정보를 확인하세요.</p>
+            </div>
+        </section>
+        
+        <section class="board-content">
+            <div class="container">
+                <div class="board-list">
+                    <div class="board-item" onclick="togglePost(1)">
+                        <div class="post-header">
+                            <div class="post-title">조에심리상담연구소 인터뷰 기사에요</div>
+                        </div>
+                        <div class="post-content" id="post-1">
+                            <div class="content-text">
+                                <p>인터뷰 기사가 나왔네요.</p>
+                                <p>내담자분들께 도움이 되는 힐링 가이드가 되길 원합니다.</p>
+                                <p><strong>기사 링크:</strong> <a href="http://www.primeherald.co.kr/14035" target="_blank">http://www.primeherald.co.kr/14035</a></p>
+                                <p>조에심리상담센터가 내담자분들의 마음의 여정에 함께하며, 실질적인 도움을 드릴 수 있도록 최선을 다하겠습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="board-item" onclick="togglePost(2)">
+                        <div class="post-header">
+                            <div class="post-title">첫번째 상담에서는 무엇을 하나요?</div>
+                        </div>
+                        <div class="post-content" id="post-2">
+                            <div class="content-text">
+                                <p>상담 신청 후 작성해 주신 상담 신청서를 토대로 상담을 신청하게 된 계기, 현재 겪고 있는 어려움은 무엇이고 어려움의 정도는 어떤지, 상담에 대한 기대와 걱정, 이전의 상담경험 등에 대해 이야기를 나누게 됩니다.</p>
+                                <p>여기서 나눈 대화를 바탕으로 이후 심리검사 실시 여부와 종류, 전체 상담 기간 등의 전반적인 치료계획을 세우고 안내해 드리게 됩니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="board-item" onclick="togglePost(3)">
+                        <div class="post-header">
+                            <div class="post-title">상담은 어떤 순서로 진행되나요?</div>
+                        </div>
+                        <div class="post-content" id="post-3">
+                            <div class="content-text">
+                                <p><strong>1) 예약 시간 조율 및 확정</strong></p>
+                                <p><strong>2) 상담비 결제</strong></p>
+                                <p><strong>3) 신청서 작성 및 사전 심리검사 실시</strong></p>
+                                <p><strong>4) 첫 회기 상담</strong></p>
+                                <p><strong>5) 심리검사 실시 및 해석</strong></p>
+                                <p><strong>6) 본 상담 시작</strong></p>
+                                <p>위의 순서대로 진행됩니다.</p>
+                                <p>더 궁금하신 사항은 편하게 문의해주세요~^^</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>조에심리상담센터</h3>
+                    <p>행복한 일상으로의 여정</p>
+                </div>
+                <div class="footer-info">
+                    <p>경기 수원시 영통구 광교중앙로248번길 7-2 원희캐슬 D동 607호</p>
+                    <p>전화: 010-7551-5625 | 이메일: zoemindfulness@naver.com</p>
+                    <p>&copy; 2023 조에심리상담센터. All Rights Reserved.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>바로가기</h4>
+                    <ul>
+                        <li><a href="https://blog.naver.com/zoemindfulness" target="_blank">네이버 블로그</a></li>
+                        <li><a href="https://smartstore.naver.com/mindpt" target="_blank">스마트스토어</a></li>
+                        <li><a href="https://talk.naver.com/ct/w4r6du?frm=pmd" target="_blank">톡톡 문의</a></li>
+                        <li><a href="http://pf.kakao.com/_uxdlYK" target="_blank">카카오 채널</a></li>
+                    </ul>
+                </div>
+                <div class="footer-keywords">
+                    <p>수원심리상담 | 광교심리상담 | 광교부부상담 | 수원부부상담 | 청소년상담</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        function togglePost(postId) {
+            const content = document.getElementById('post-' + postId);
+            const boardItem = content.closest('.board-item');
+            
+            // 다른 모든 게시글 닫기
+            const allContents = document.querySelectorAll('.post-content');
+            const allItems = document.querySelectorAll('.board-item');
+            
+            allContents.forEach(item => {
+                if (item !== content) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            allItems.forEach(item => {
+                if (item !== boardItem) {
+                    item.classList.remove('active');
+                }
+            });
+            
+            // 현재 게시글 토글
+            content.classList.toggle('active');
+            boardItem.classList.toggle('active');
+        }
+        
+
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html> 

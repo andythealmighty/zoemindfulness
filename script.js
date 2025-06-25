@@ -105,8 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // 메뉴 링크 클릭 시 메뉴 닫기
-        const navLinks = nav.querySelectorAll('a');
+        // 메뉴 링크 클릭 시 메뉴 닫기 (아코디언 세부 메뉴 제외)
+        const navLinks = nav.querySelectorAll('a:not(.accordion-menu a)');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
                 if (window.innerWidth <= 768) {
@@ -438,20 +438,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     if (isAboutAccordion) {
                         if (programAccordionEl) programAccordionEl.classList.remove('active');
                         if (testimonialsAccordionEl) testimonialsAccordionEl.classList.remove('active');
+                        accordion.classList.add('active');
                         localStorage.setItem('aboutAccordionOpen', 'true');
                         localStorage.setItem('programAccordionOpen', 'false');
                         localStorage.setItem('testimonialsAccordionOpen', 'false');
                     } else if (isTestimonialsAccordion) {
-                        // 상담후기는 아코디언 상태를 토글하면서 자필 상담후기로 이동
+                        // 상담후기도 다른 아코디언과 동일하게 처리
                         if (programAccordionEl) programAccordionEl.classList.remove('active');
                         if (aboutAccordionEl) aboutAccordionEl.classList.remove('active');
-                        testimonialsAccordionEl.classList.add('active');
+                        accordion.classList.add('active');
                         localStorage.setItem('testimonialsAccordionOpen', 'true');
                         localStorage.setItem('programAccordionOpen', 'false');
                         localStorage.setItem('aboutAccordionOpen', 'false');
                     } else if (isProgramAccordion) {
                         if (aboutAccordionEl) aboutAccordionEl.classList.remove('active');
                         if (testimonialsAccordionEl) testimonialsAccordionEl.classList.remove('active');
+                        accordion.classList.add('active');
                         localStorage.setItem('programAccordionOpen', 'true');
                         localStorage.setItem('aboutAccordionOpen', 'false');
                         localStorage.setItem('testimonialsAccordionOpen', 'false');
@@ -498,23 +500,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 상담후기 메인 링크 클릭 시 상태 유지
-    const testimonialsMainLink = document.querySelector('.testimonials-accordion > a');
-    if (testimonialsMainLink) {
-        testimonialsMainLink.addEventListener('click', function(e) {
-            // 다른 메뉴들 닫기
-            if (aboutAccordionEl) {
-                aboutAccordionEl.classList.remove('active');
-            }
-            if (programAccordionEl) {
-                programAccordionEl.classList.remove('active');
-            }
-            // 상담후기 페이지로 이동할 때 아코디언 상태 유지
-            localStorage.setItem('testimonialsAccordionOpen', 'true');
-            localStorage.setItem('aboutAccordionOpen', 'false');
-            localStorage.setItem('programAccordionOpen', 'false');
-        });
-    }
+    // 상담후기 메인 링크는 위의 아코디언 forEach 루프에서 처리됨
     
     // 프로그램 세부 메뉴 링크 클릭 시 상태 유지
     const programMenuLinks = document.querySelectorAll('.program-accordion .accordion-menu a');
@@ -572,8 +558,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // 다른 메뉴 링크 클릭 시 아코디언 닫기
-    const otherNavLinks = document.querySelectorAll('nav ul li a:not(.accordion > a):not(.accordion-menu a)');
+    // 다른 메뉴 링크 (아코디언 메뉴 외부) 클릭 시 아코디언 닫기
+    const otherNavLinks = document.querySelectorAll('nav ul li:not(.accordion) > a');
     otherNavLinks.forEach(link => {
         link.addEventListener('click', function() {
             // 다른 메뉴 클릭 시 모든 아코디언 닫기

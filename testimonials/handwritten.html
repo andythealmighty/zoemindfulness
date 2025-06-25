@@ -52,12 +52,13 @@
                         <li class="accordion testimonials-accordion">
                             <a href="handwritten.html">상담후기</a>
                             <ul class="accordion-menu testimonials-menu">
-                                <li><a href="handwritten.html">자필 상담후기</a></li>
-                                <li><a href="naver.html">네이버 상담후기</a></li>
+                                <li><a href="#" class="active" onclick="return false;">자필 상담후기</a></li>
+                                <li><a href="https://map.naver.com/p/entry/place/1018451095?c=15.00,0,0,0,dh&placePath=/review?additionalHeight=76&from=map&fromPanelNum=1&locale=ko&svcName=map_pcv5&timestamp=202506251609&fromPanelNum=1&additionalHeight=76&timestamp=202506251609&locale=ko&svcName=map_pcv5" target="_blank">네이버 상담후기</a></li>
                                 <li><a href="../testimonials.html">블로그 상담후기</a></li>
                             </ul>
                         </li>
                         <li><a href="../healing-guide.html">힐링가이드</a></li>
+                        <li><a href="../board.html">게시판</a></li>
                         <li><a href="../contact.html" class="btn">상담 문의</a></li>
                     </ul>
                 </nav>
@@ -76,79 +77,103 @@
             </div>
         </section>
         
-        <section class="testimonials">
+        <section class="testimonials handwritten-testimonials">
             <div class="container">
                 <div class="testimonials-grid">
                     <!-- 자필 후기 이미지들 -->
                     <div class="testimonial-card">
-                        <div class="testimonial-image">
-                            <img src="../images/healing1.jpg" alt="자필 상담후기 1">
-                        </div>
-                        <div class="testimonial-text">
-                            <p>개인상담 후기 - "마음이 많이 편해졌어요"</p>
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting1.jpg', '자필 상담후기 1')">
+                            <img src="../images/handwriting1.jpg" alt="자필 상담후기 1">
                         </div>
                     </div>
                     
                     <div class="testimonial-card">
-                        <div class="testimonial-image">
-                            <img src="../images/healing2.jpg" alt="자필 상담후기 2">
-                        </div>
-                        <div class="testimonial-text">
-                            <p>부부상담 후기 - "서로를 이해하게 되었습니다"</p>
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting2.jpg', '자필 상담후기 2')">
+                            <img src="../images/handwriting2.jpg" alt="자필 상담후기 2">
                         </div>
                     </div>
                     
                     <div class="testimonial-card">
-                        <div class="testimonial-image">
-                            <img src="../images/healing3.jpg" alt="자필 상담후기 3">
-                        </div>
-                        <div class="testimonial-text">
-                            <p>청소년상담 후기 - "자신감을 되찾았어요"</p>
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting3.jpg', '자필 상담후기 3')">
+                            <img src="../images/handwriting3.jpg" alt="자필 상담후기 3">
                         </div>
                     </div>
                     
                     <div class="testimonial-card">
-                        <div class="testimonial-image">
-                            <img src="../images/healing4.jpg" alt="자필 상담후기 4">
-                        </div>
-                        <div class="testimonial-text">
-                            <p>심리검사 후기 - "나를 더 잘 알게 되었습니다"</p>
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting4.jpg', '자필 상담후기 4')">
+                            <img src="../images/handwriting4.jpg" alt="자필 상담후기 4">
                         </div>
                     </div>
                     
                     <div class="testimonial-card">
-                        <div class="testimonial-image">
-                            <img src="../images/healing5.jpg" alt="자필 상담후기 5">
-                        </div>
-                        <div class="testimonial-text">
-                            <p>화상상담 후기 - "편안한 환경에서 상담받을 수 있어 좋았어요"</p>
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting5.jpg', '자필 상담후기 5')">
+                            <img src="../images/handwriting5.jpg" alt="자필 상담후기 5">
                         </div>
                     </div>
                     
                     <div class="testimonial-card">
-                        <div class="testimonial-image">
-                            <img src="../images/healing6.jpg" alt="자필 상담후기 6">
-                        </div>
-                        <div class="testimonial-text">
-                            <p>개인상담 후기 - "새로운 시작을 할 수 있게 되었어요"</p>
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting6.jpg', '자필 상담후기 6')">
+                            <img src="../images/handwriting6.jpg" alt="자필 상담후기 6">
                         </div>
                     </div>
                     
                     <div class="testimonial-card">
-                        <div class="testimonial-image">
-                            <img src="../images/healing7.jpg" alt="자필 상담후기 7">
-                        </div>
-                        <div class="testimonial-text">
-                            <p>가족상담 후기 - "가족 관계가 많이 개선되었습니다"</p>
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting7.jpg', '자필 상담후기 7')">
+                            <img src="../images/handwriting7.jpg" alt="자필 상담후기 7">
                         </div>
                     </div>
                     
                     <div class="testimonial-card">
-                        <div class="testimonial-image">
-                            <img src="../images/healing8.jpg" alt="자필 상담후기 8">
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting8.jpg', '자필 상담후기 8')">
+                            <img src="../images/handwriting8.jpg" alt="자필 상담후기 8">
                         </div>
-                        <div class="testimonial-text">
-                            <p>진로상담 후기 - "앞으로의 방향을 찾을 수 있었어요"</p>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting9.jpg', '자필 상담후기 9')">
+                            <img src="../images/handwriting9.jpg" alt="자필 상담후기 9">
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting10.jpg', '자필 상담후기 10')">
+                            <img src="../images/handwriting10.jpg" alt="자필 상담후기 10">
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting11.jpg', '자필 상담후기 11')">
+                            <img src="../images/handwriting11.jpg" alt="자필 상담후기 11">
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting12.jpg', '자필 상담후기 12')">
+                            <img src="../images/handwriting12.jpg" alt="자필 상담후기 12">
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting13.jpg', '자필 상담후기 13')">
+                            <img src="../images/handwriting13.jpg" alt="자필 상담후기 13">
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting14.jpg', '자필 상담후기 14')">
+                            <img src="../images/handwriting14.jpg" alt="자필 상담후기 14">
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting15.jpg', '자필 상담후기 15')">
+                            <img src="../images/handwriting15.jpg" alt="자필 상담후기 15">
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-image" onclick="openModal('../images/handwriting16.jpg', '자필 상담후기 16')">
+                            <img src="../images/handwriting16.jpg" alt="자필 상담후기 16">
                         </div>
                     </div>
                 </div>
@@ -175,6 +200,15 @@
                 </div>
             </div>
         </section>
+        
+        <!-- 이미지 모달 -->
+        <div id="imageModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <img id="modalImage" src="" alt="">
+                <div class="modal-caption" id="modalCaption"></div>
+            </div>
+        </div>
     </main>
     
     <footer>
@@ -206,5 +240,45 @@
     </footer>
     
     <script src="../script.js"></script>
+    
+    <script>
+        // 모달 열기 함수
+        function openModal(imageSrc, imageAlt) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            
+            modal.style.display = 'block';
+            modalImage.src = imageSrc;
+            modalImage.alt = imageAlt;
+            modalCaption.textContent = imageAlt;
+            
+            // 페이지 스크롤 방지
+            document.body.style.overflow = 'hidden';
+        }
+        
+        // 모달 닫기 함수
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+            
+            // 페이지 스크롤 복원
+            document.body.style.overflow = 'auto';
+        }
+        
+        // 모달 배경 클릭 시 닫기
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        // ESC 키로 모달 닫기
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html> 

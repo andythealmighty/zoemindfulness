@@ -1551,16 +1551,27 @@ html {
     color: var(--white);
     padding: 60px 0;
     text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .page-header h1 {
     font-size: 36px;
     margin-bottom: 10px;
+    font-weight: 500;
+    line-height: 1.2;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .page-header p {
     font-size: 18px;
     opacity: 0.9;
+    line-height: 1.4;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 /* 상담 영역 카드 스타일 */
@@ -3557,5 +3568,31 @@ html {
     .content-text {
         padding: 15px;
         font-size: 0.9rem;
+    }
+    
+    /* 모바일에서 페이지 헤더 떨림 방지 */
+    .page-header {
+        padding: 40px 0;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+    }
+    
+    .page-header h1 {
+        font-size: 28px;
+        font-weight: 600;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        will-change: auto;
+    }
+    
+    .page-header p {
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        will-change: auto;
     }
 }

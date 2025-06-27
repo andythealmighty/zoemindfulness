@@ -389,9 +389,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 const isTestimonialsAccordion = accordion.className.includes('testimonials-accordion');
                 const isProgramAccordion = accordion.className.includes('program-accordion');
                 
-                // 모바일에서는 항상 토글, 데스크톱에서는 조건부 토글
+                // 모바일에서는 바로 첫 번째 세부메뉴로 이동, 데스크톱에서는 조건부 토글
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
+                    
+                    // 모바일에서는 바로 첫 번째 세부메뉴로 이동
+                    if (isAboutAccordion) {
+                        // 소개 -> 센터 소개로 이동
+                        window.location.href = 'about.html';
+                        return;
+                    } else if (isTestimonialsAccordion) {
+                        // 상담후기 -> 자필 상담후기로 이동
+                        window.location.href = 'testimonials/handwritten.html';
+                        return;
+                    } else if (isProgramAccordion) {
+                        // 프로그램 -> 프로그램 소개로 이동
+                        window.location.href = 'programs.html';
+                        return;
+                    }
                     
                     // 다른 아코디언들이 열려있으면 닫기
                     if (isAboutAccordion) {

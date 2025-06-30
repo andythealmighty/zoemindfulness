@@ -54,7 +54,7 @@
                             <ul class="accordion-menu testimonials-menu">
                                 <li><a href="testimonials/handwritten.html">자필 상담후기</a></li>
                                 <li><a href="https://map.naver.com/p/entry/place/1018451095?c=15.00,0,0,0,dh&placePath=/review?additionalHeight=76&from=map&fromPanelNum=1&locale=ko&svcName=map_pcv5&timestamp=202506251609&fromPanelNum=1&additionalHeight=76&timestamp=202506251609&locale=ko&svcName=map_pcv5" target="_blank">네이버 상담후기</a></li>
-                                <li><a href="#" class="active" onclick="return false;">블로그 상담후기</a></li>
+                                <li><a href="testimonials.html" class="active">블로그 상담후기</a></li>
                             </ul>
                         </li>
                         <li><a href="healing-guide.html">힐링가이드</a></li>
@@ -223,37 +223,6 @@
                 content.classList.add('active');
             }
         }
-        
-        // 페이지 로드 시 실행
-        document.addEventListener('DOMContentLoaded', function() {
-            // 모바일 메뉴 토글
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const nav = document.querySelector('nav');
-            
-            if (mobileMenuBtn) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    nav.classList.toggle('active');
-                });
-            }
-            
-            // 맨 위로 스크롤 버튼
-            const backToTopBtn = document.querySelector('.back-to-top');
-            
-            if (backToTopBtn) {
-                window.addEventListener('scroll', function() {
-                    if (window.pageYOffset > 300) {
-                        backToTopBtn.style.display = 'block';
-                    } else {
-                        backToTopBtn.style.display = 'none';
-                    }
-                });
-                
-                backToTopBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                });
-            }
-        });
     </script>
     
     <script src="script.js"></script>

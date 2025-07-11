@@ -13,6 +13,31 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /* 텍스트 선택 방지 */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    /* 드래그 방지 */
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+}
+
+/* 입력 필드와 버튼은 정상 작동하도록 예외 처리 */
+input, textarea, select, button, .btn, a {
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    user-select: text !important;
+}
+
+/* 버튼과 링크는 클릭 가능하도록 */
+button, .btn, a, .mobile-menu-btn {
+    pointer-events: auto !important;
+    cursor: pointer !important;
 }
 
 /* 모바일 터치 최적화 */

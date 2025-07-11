@@ -1,4 +1,123 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // 텍스트 보호 기능 추가
+    
+    // 우클릭 방지
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    // 텍스트 선택 방지
+    document.addEventListener('selectstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    // 드래그 방지
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    });
+    
+    // 키보드 단축키 방지 (입력 필드 제외)
+    document.addEventListener('keydown', function(e) {
+        const target = e.target;
+        const isInputField = target.tagName === 'INPUT' || target.tagName === 'TEXTAREA';
+        
+        // F12 개발자도구 방지
+        if (e.keyCode === 123) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // 입력 필드에서는 기본적인 Ctrl+A, Ctrl+C, Ctrl+V 허용
+        if (isInputField && e.ctrlKey) {
+            if (e.keyCode === 65 || e.keyCode === 67 || e.keyCode === 86) {
+                return true; // 입력 필드에서는 선택, 복사, 붙여넣기 허용
+            }
+        }
+        
+        // Ctrl 조합키 방지
+        if (e.ctrlKey) {
+            // Ctrl+A (전체선택), Ctrl+C (복사), Ctrl+V (붙여넣기), Ctrl+S (저장), Ctrl+U (소스보기), Ctrl+P (인쇄)
+            if (e.keyCode === 65 || e.keyCode === 67 || e.keyCode === 86 || e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 80) {
+                e.preventDefault();
+                return false;
+            }
+        }
+        
+        // Ctrl+Shift+I (개발자도구)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Ctrl+Shift+J (콘솔)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 74) {
+            e.preventDefault();
+            return false;
+        }
+        
+        // Ctrl+Shift+C (요소 검사)
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 67) {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // 마우스 드래그로 텍스트 선택 방지 (버튼, 링크, 입력 필드 제외)
+    document.onselectstart = function(e) {
+        const target = e.target;
+        if (target.tagName === 'BUTTON' || target.tagName === 'A' || 
+            target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || 
+            target.tagName === 'SELECT' || target.classList.contains('btn') ||
+            target.closest('button') || target.closest('a') || target.closest('.btn')) {
+            return true; // 버튼, 링크, 폼 요소는 허용
+        }
+        return false;
+    };
+    
+    document.onmousedown = function(e) {
+        const target = e.target;
+        if (target.tagName === 'BUTTON' || target.tagName === 'A' || 
+            target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || 
+            target.tagName === 'SELECT' || target.classList.contains('btn') ||
+            target.closest('button') || target.closest('a') || target.closest('.btn') ||
+            target.classList.contains('mobile-menu-btn') || target.closest('.mobile-menu-btn')) {
+            return true; // 버튼, 링크, 폼 요소, 모바일 메뉴는 허용
+        }
+        return false;
+    };
+    
+    // 이미지 드래그 방지
+    document.addEventListener('dragstart', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.preventDefault();
+            return false;
+        }
+    });
+    
+    // 콘솔 메시지
+    console.log('%c조에심리상담센터', 'color: #3498db; font-size: 20px; font-weight: bold;');
+    console.log('%c웹사이트 내용은 저작권으로 보호됩니다.', 'color: #e74c3c; font-size: 14px;');
+    
+    // 개발자도구 열림 감지 (간단한 방법)
+    let devtools = {
+        open: false,
+        orientation: null
+    };
+    
+    setInterval(function() {
+        if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
+            if (!devtools.open) {
+                devtools.open = true;
+                console.clear();
+                console.log('%c개발자도구를 닫아주세요!', 'color: red; font-size: 30px; font-weight: bold;');
+            }
+        } else {
+            devtools.open = false;
+        }
+    }, 500);
     // 히어로 슬라이드쇼 기능
     const slides = document.querySelectorAll('.slide');
     let currentSlide = 0;
